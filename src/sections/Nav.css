@@ -1,0 +1,49 @@
+.nav {
+  position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+  width: min(1100px, calc(100% - 48px)); z-index: var(--z-nav);
+  background: rgba(12, 12, 12, 0.95); border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-pill); box-shadow: var(--shadow-nav);
+  backdrop-filter: blur(var(--blur-glass));
+}
+.nav__bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 8px; }
+.nav__side { display: flex; align-items: center; gap: 4px; }
+.nav__side--right { justify-content: flex-end; }
+.nav__side-list { display: flex; gap: 4px; }
+
+.nav__link {
+  display: inline-flex; align-items: center; min-height: 40px; padding: 10px 20px;
+  border-radius: var(--radius-pill); font: 600 var(--fs-body)/20px var(--font-body);
+  color: rgba(255, 255, 255, 0.85); transition: background-color var(--duration-fast);
+}
+.nav__link:hover { background: rgba(255, 255, 255, 0.1); }
+.nav__link.is-active { background: var(--lime-400); color: #0c0c0c; }
+
+.nav__logo { display: flex; align-items: center; gap: 10px; padding-inline: var(--space-4); }
+.nav__logo-mark {
+  width: 40px; height: 40px; border-radius: 50%; background: var(--lime-400);
+  display: grid; place-items: center;
+}
+.nav__logo-mark .decor { position: static; }
+.nav__logo-text { font: 400 var(--fs-title-md)/32px var(--font-display); letter-spacing: 0.6px; color: #fff; }
+
+.nav__toggle, .nav__menu-btn {
+  width: 40px; height: 40px; border-radius: 50%; background: var(--lime-400); color: #0c0c0c;
+  display: grid; place-items: center; margin-left: 8px;
+  transition: background-color var(--duration-fast);
+}
+.nav__toggle:hover { background: var(--lime-300); }
+.nav__toggle:hover svg { transform: rotate(15deg); }
+.nav__toggle svg { transition: transform var(--duration-base); }
+.nav__menu-btn { display: none; }
+.nav__sheet { display: none; }
+
+@media (max-width: 1023px) {
+  .nav { width: calc(100% - 32px); border-radius: var(--radius-2xl); }
+  .nav__bar { grid-template-columns: auto 1fr; }
+  .nav__side--left, .nav__side-list { display: none; }
+  .nav__menu-btn { display: grid; }
+  .nav__sheet { display: none; flex-direction: column; gap: 4px; padding: 8px 8px 16px; }
+  .nav__sheet.is-open { display: flex; }
+  .nav__sheet .nav__link { width: 100%; }
+}
+

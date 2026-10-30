@@ -1,0 +1,66 @@
+/* ===== KOMPONEN UI (DESIGNSYSTEM §6) ===== */
+
+/* Button */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  border-radius: var(--radius-pill); font: 700 var(--fs-body)/20px var(--font-body);
+  padding: 12px 28px; min-height: 44px; cursor: pointer; white-space: nowrap;
+  transition: background-color var(--duration-fast) var(--ease-out-soft),
+    transform var(--duration-fast) var(--ease-out-soft);
+}
+.btn--lg { font-size: var(--fs-body-lg); line-height: 24px; padding: 16px 32px; }
+.btn--primary { background: var(--accent-fill); color: var(--on-accent); }
+.btn--primary:hover { background: var(--lime-300); transform: translateY(-1px); }
+.btn--primary:active { background: var(--lime-500); transform: none; }
+.btn--primary svg { transition: transform var(--duration-fast) var(--ease-out-soft); }
+.btn--primary:hover svg { transform: translate(2px, -2px); }
+.btn--outline { border: 2px solid var(--outline-strong); color: var(--text-primary); background: transparent; }
+.btn--outline:hover { background: color-mix(in srgb, var(--outline-strong) 8%, transparent); }
+.btn--outline:active { background: color-mix(in srgb, var(--outline-strong) 12%, transparent); }
+.btn--ghost { color: #fff; font-weight: 600; padding-inline: 20px; }
+.btn--ghost:hover { background: rgba(255, 255, 255, 0.1); }
+.btn[disabled] { opacity: 0.5; pointer-events: none; }
+
+/* Icon circle */
+.icon-circle {
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  width: var(--ic-size, 40px); height: var(--ic-size, 40px); border-radius: 50%;
+  transition: background-color var(--duration-fast), transform var(--duration-base) var(--ease-out-soft);
+}
+.icon-circle:hover { transform: rotate(45deg); }
+.icon-circle--lime { background: var(--lime-400); color: #0c0c0c; box-shadow: var(--shadow-md); }
+.icon-circle--lime:hover { background: var(--lime-300); }
+.icon-circle--white { background: rgba(255, 255, 255, 0.9); color: #0c0c0c; border: 2px solid rgba(12, 12, 12, 0.8); }
+.icon-circle--ink { background: #0c0c0c; color: var(--lime-400); }
+
+/* Chip */
+.chip {
+  display: inline-flex; align-items: center; padding: 4px 12px; border-radius: var(--radius-pill);
+  font: 700 var(--fs-caption)/16px var(--font-body); white-space: nowrap;
+}
+.chip--lime { background: var(--accent-fill); color: var(--on-accent); }
+.chip--outline { border: 1px solid rgba(255, 255, 255, 0.25); color: #fff; }
+.chip--soft { background: rgba(255, 255, 255, 0.1); color: #fff; font-weight: 400; }
+.chip--dark { background: #171717; color: #fff; font: 500 var(--fs-body)/20px var(--font-body); padding: 8px 20px; }
+:root[data-theme="light"] .chip--dark { background: rgba(12, 12, 12, 0.08); color: #0c0c0c; }
+
+/* Tech badge */
+.tech { display: inline-flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+.tech--sm { width: 32px; height: 32px; border-radius: var(--radius-xs); font-size: var(--fs-caption); }
+.tech--lg { width: 56px; height: 56px; border-radius: var(--radius-md); font-size: 18px; }
+
+/* Glass card */
+.card-glass {
+  background: var(--surface-glass); border: 1px solid var(--line-subtle);
+  border-radius: var(--radius-xl); backdrop-filter: blur(var(--blur-glass)); overflow: clip;
+}
+
+/* Karakter sticker */
+.character {
+  filter: drop-shadow(0 -2.5px 0 #fff) drop-shadow(0 2.5px 0 #fff)
+    drop-shadow(-2.5px 0 0 #fff) drop-shadow(2.5px 0 0 #fff)
+    drop-shadow(0 12px 32px rgba(0, 0, 0, 0.3));
+}
+
+.decor { position: absolute; pointer-events: none; z-index: var(--z-decor); }
+

@@ -1,0 +1,21 @@
+.ribbon { position: relative; height: 280px; padding-block: var(--space-20); overflow: clip; }
+.ribbon__band {
+  position: absolute; left: -24px; width: calc(100% + 48px); height: 80px; overflow: hidden;
+  display: flex; align-items: center; box-shadow: var(--shadow-md);
+}
+.ribbon__band--1 { top: 80px; background: var(--lime-400); color: #0c0c0c; transform: rotate(-2deg); }
+.ribbon__band--2 { top: 120px; background: var(--ribbon-2-bg); color: var(--ribbon-2-text); transform: rotate(1.5deg); }
+
+.ribbon__track { display: flex; width: max-content; }
+.ribbon__group { display: flex; align-items: center; gap: var(--space-8); padding-right: var(--space-8); }
+.ribbon__group li { display: flex; align-items: center; gap: var(--space-8); white-space: nowrap; }
+.ribbon__group span { font: 400 var(--fs-display-md)/48px var(--font-display); }
+.ribbon__sep { position: static; flex-shrink: 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .ribbon__track { animation: marquee 36s linear infinite; }
+  .ribbon__band--2 .ribbon__track { animation-direction: reverse; }
+  .ribbon__band:hover .ribbon__track { animation-play-state: paused; }
+}
+@keyframes marquee { to { transform: translateX(-50%); } }
+
