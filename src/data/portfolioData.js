@@ -4,14 +4,17 @@
 // Catatan: bagian bertanda (CONTOH) belum ada di Figma, silakan ganti.
 // ===================================================================
 
+import { cvPdf } from '../assets';
+
 export const person = {
   name: 'Choirun Nisa',
   wordmark: 'CHOIRUN',
-  email: 'choirun@example.com',          // (CONTOH)
-  phone: '+62 812-0000-0000',             // (CONTOH)
-  whatsapp: 'https://wa.me/628120000000', // (CONTOH)
-  instagram: 'https://instagram.com/',    // (CONTOH)
-  resumeUrl: '#',                         // ganti dengan link CV
+  email: 'choirun.pratini@gmail.com',
+  phone: '+62-877-5059-7475',
+  whatsapp: 'https://wa.me/6287750597475',
+  instagram: 'https://instagram.com/seishu1nui/',
+  instagramHandle: '@seishu1nui',
+  resumeUrl: cvPdf,
   year: 2026,
 };
 
@@ -57,15 +60,14 @@ export const techBadges = {
 export const services = {
   titleA: 'Fokus yang',
   titleB: 'Aku Tekuni',
-  intro: 'Tiga bidang yang aku dalami: merancang pengalaman, membangunnya, dan membuatnya hidup.',
+  intro: 'Dua bidang yang aku dalami: merancang pengalaman dan membangunnya jadi antarmuka nyata.',
   items: [
-    { title: 'UI/UX Design', desc: 'Riset, user flow, wireframe hingga prototipe interaktif yang siap diuji pengguna.', tech: ['Fg'], skin: '#f2c9a5' },
-    { title: 'Front-End Dev', desc: 'Mengubah desain jadi antarmuka responsif, aksesibel, dan rapi dengan kode bersih.', tech: ['HT', 'CS', 'JS', 'Re'], skin: '#e8b48c' },
-    { title: 'Visual & Motion', desc: 'Ilustrasi, editing video, dan motion graphic untuk memperkuat identitas visual.', tech: ['Ps', 'Ai', 'Pr', 'Ae', 'Bl'], skin: '#f2c9a5' },
+    { id: 'uiux', title: 'UI/UX Design', desc: 'Riset, user flow, wireframe hingga prototipe interaktif yang siap diuji pengguna.', tech: ['Fg'], href: '#competitions' },
+    { id: 'frontend', title: 'Front-End Dev', desc: 'Mengubah desain jadi antarmuka responsif, aksesibel, dan rapi dengan kode bersih.', tech: ['HT', 'CS', 'JS', 'Re'], href: '#works' },
   ],
   stats: [
     { value: '6', label: 'Lomba UI/UX' },
-    { value: '3', label: 'Proyek Klien' },
+    { value: '4', label: 'Proyek Portofolio' },
     { value: '2', label: 'Penghargaan' },
   ],
 };
@@ -98,8 +100,8 @@ export const competitions = {
   certsTitleA: 'Sertifikasi &',
   certsTitleHl: 'prestasi',
   certs: [
-    { title: 'Finalis 5 Besar', org: 'Lomba UI/UX Universitas AMIKOM', project: 'Visensa', kind: 'Lomba UI/UX' },
-    { title: 'Harapan 1', org: 'Lomba UI/UX Universitas Jember', project: 'AksesKota', kind: 'Lomba UI/UX' },
+    { id: 'finalis-5-besar', title: 'Finalis 5 Besar', org: 'Lomba UI/UX Universitas AMIKOM', project: 'Visensa', kind: 'Lomba UI/UX' },
+    { id: 'harapan-1', title: 'Harapan 1', org: 'Lomba UI/UX Universitas Jember', project: 'AksesKota', kind: 'Lomba UI/UX' },
   ],
 };
 
@@ -109,7 +111,7 @@ export const experience = {
   titleHl: 'Kerjaku',
   items: [
     { org: 'Project PKL', period: '2025', role: 'Front-End Developer Intern', desc: 'Membangun dashboard internal dengan React dan berkolaborasi dengan tim desain.' },
-    { org: 'Freelance', period: '2024 – Sekarang', role: 'UI/UX Designer', desc: 'Mengerjakan 3 proyek klien: riset, desain, dan handoff ke developer.' },
+    { org: 'Kuliah di IPB', period: '2024 – Sekarang', role: 'Teknologi Rekayasa Perangkat Lunak', desc: 'Kuliah di IPB jurusan Teknologi Rekayasa Perangkat Lunak dan sudah mempunyai 4 project.' },
     { org: 'Himpunan Mahasiswa', period: '2024 – 2025', role: 'Staf Desain & Media', desc: 'Merancang materi visual dan dokumentasi untuk 5 event kampus.' },
     { org: 'Komunitas Desain', period: '2023', role: 'Anggota Aktif', desc: 'Mengikuti workshop dan sesi kritik desain mingguan.' },
   ],
@@ -118,10 +120,13 @@ export const experience = {
 export const style = {
   titleA: 'Cara Aku',
   titleB: 'Mendesain',
-  tagline: ['Satu sistem, banyak layar, satu rasa:', 'konsistensi.'],
-  quote: "Users don't care about what's behind the screen — they care about how it feels.",
-  process: 'User flow dulu, pixel kemudian. Setiap keputusan visual punya alasan.',
-  handoff: 'Desain yang bisa dibangun: token jelas, komponen konsisten, dan dokumentasi yang rapi.',
+  taglineA: 'Riset, struktur, lalu visual.',
+  taglineB: 'Dengan ',
+  taglineHl: 'konsistensi.',
+  quote: "“Users don’t care about what’s behind the screen, they care about what’s on it.”",
+  process: 'User flow dulu, pixel kemudian. Setiap layar harus punya alasan.',
+  handoffLine1: 'Desain yang bisa dibangun.',
+  handoffLine2: 'Aku belajar front-end supaya handoff-nya nyambung.',
 };
 
 export const about = {
@@ -136,24 +141,55 @@ export const about = {
   ],
   stats: [
     { value: '6', label: 'Lomba UI/UX' },
-    { value: '3', label: 'Proyek klien' },
+    { value: '4', label: 'Proyek' },
     { value: '5', label: 'Event kampus' },
     { value: '2', label: 'Penghargaan' },
   ],
   skillsTitleA: 'Skills &',
   skillsTitleHl: 'tools',
+  skillCategories: [
+    {
+      name: 'UI/UX Design',
+      desc: 'Perancangan antarmuka, alur pengguna, wireframe & sistem desain.',
+      skills: [
+        { code: 'Fg', name: 'Figma', level: 'Tool utama' },
+      ],
+    },
+    {
+      name: 'Front-End Development',
+      desc: 'Membangun antarmuka web responsif, interaktif, dan kode bersih.',
+      skills: [
+        { code: 'HT', name: 'HTML5', level: 'Struktur semantik' },
+        { code: 'CS', name: 'CSS3', level: 'Styling & animasi' },
+        { code: 'JS', name: 'JavaScript', level: 'Interaktivitas' },
+        { code: 'Re', name: 'React', level: 'Komponen modern' },
+        { code: 'La', name: 'Laravel', level: 'Dasar web backend' },
+      ],
+    },
+    {
+      name: 'Visual, Motion & 3D',
+      desc: 'Ilustrasi digital, aset grafis, video editing, motion & elemen 3D.',
+      skills: [
+        { code: 'Ps', name: 'Photoshop', level: 'Manipulasi visual' },
+        { code: 'Ai', name: 'Illustrator', level: 'Desain vektor' },
+        { code: 'Pr', name: 'Premiere Pro', level: 'Video editing' },
+        { code: 'Ae', name: 'After Effects', level: 'Motion graphics' },
+        { code: 'Bl', name: 'Blender', level: 'Pemodelan 3D' },
+      ],
+    },
+  ],
   skills: [
     { code: 'Fg', name: 'Figma', level: 'Tool utama' },
-    { code: 'HT', name: 'HTML', level: 'Sedang' },
-    { code: 'CS', name: 'CSS', level: 'Sedang' },
-    { code: 'JS', name: 'JavaScript', level: 'Beginner' },
-    { code: 'Re', name: 'React', level: 'Sedang belajar' },
-    { code: 'La', name: 'Laravel', level: 'Beginner' },
-    { code: 'Ps', name: 'Photoshop', level: 'Visual' },
-    { code: 'Ai', name: 'Illustrator', level: 'Visual' },
-    { code: 'Pr', name: 'Premiere Pro', level: 'Video' },
-    { code: 'Ae', name: 'After Effects', level: 'Motion' },
-    { code: 'Bl', name: 'Blender', level: '3D' },
+    { code: 'HT', name: 'HTML5', level: 'Struktur semantik' },
+    { code: 'CS', name: 'CSS3', level: 'Styling & animasi' },
+    { code: 'JS', name: 'JavaScript', level: 'Interaktivitas' },
+    { code: 'Re', name: 'React', level: 'Komponen modern' },
+    { code: 'La', name: 'Laravel', level: 'Dasar web backend' },
+    { code: 'Ps', name: 'Photoshop', level: 'Manipulasi visual' },
+    { code: 'Ai', name: 'Illustrator', level: 'Desain vektor' },
+    { code: 'Pr', name: 'Premiere Pro', level: 'Video editing' },
+    { code: 'Ae', name: 'After Effects', level: 'Motion graphics' },
+    { code: 'Bl', name: 'Blender', level: 'Pemodelan 3D' },
   ],
 };
 

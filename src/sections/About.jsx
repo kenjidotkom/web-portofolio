@@ -1,9 +1,8 @@
 import { GraduationCap, Download, ArrowUpRight } from 'lucide-react';
 import Reveal from '../components/ui/Reveal';
 import Button from '../components/ui/Button';
-import Character from '../components/ui/Character';
-import { Starburst } from '../components/ui/Decor';
 import { TechBadge } from '../components/ui/Chip';
+import { about as aboutArt } from '../assets';
 import { about as a, person } from '../data/portfolioData';
 import './About.css';
 
@@ -13,9 +12,7 @@ export default function About() {
       <div className="container">
         <Reveal className="about__card card-surface">
           <div className="about__photo">
-            <Starburst size={112} color="var(--lime-400)" style={{ right: -24, top: -24 }} />
-            <span className="about__status">{a.badge}</span>
-            <Character alt={`Foto ${person.name}`} skin="#f2c9a5" />
+            <img src={aboutArt} alt={`Tentang ${person.name}`} className="about__photo-img" />
           </div>
 
           <div className="about__text">
@@ -44,8 +41,8 @@ export default function About() {
             </dl>
 
             <div className="about__cta">
-              <Button href={person.resumeUrl} size="lg" icon={Download}>Unduh CV</Button>
-              <Button href="#contact" size="lg" variant="outline" icon={ArrowUpRight}>Hubungi aku</Button>
+              <Button href={person.resumeUrl} target="_blank" rel="noopener noreferrer" size="lg" icon={Download}>Unduh CV</Button>
+              <Button href={person.whatsapp} target="_blank" rel="noopener noreferrer" size="lg" variant="outline" icon={ArrowUpRight}>Hubungi aku</Button>
             </div>
           </div>
         </Reveal>
@@ -54,17 +51,42 @@ export default function About() {
           <Reveal as="h2" className="h-display-xl skills__title">
             {a.skillsTitleA} <span className="accent-text">{a.skillsTitleHl}</span>
           </Reveal>
-          <ul className="skills__grid">
-            {a.skills.map((s, i) => (
-              <Reveal as="li" key={s.code} delay={(i % 4) * 60} className="skill-tile card-surface">
-                <TechBadge code={s.code} size="lg" title={s.name} />
-                <div>
-                  <strong>{s.name}</strong>
-                  <span>{s.level}</span>
-                </div>
-              </Reveal>
-            ))}
-          </ul>
+          
+          <div className="skills__categories">
+            {a.skillCategories ? (
+              a.skillCategories.map((cat, ci) => (
+                <Reveal key={cat.name} delay={ci * 80} className="skills__group">
+                  <div className="skills__group-head">
+                    <span className="skills__group-badge">{cat.name}</span>
+                    <p className="skills__group-desc">{cat.desc}</p>
+                  </div>
+                  <ul className="skills__grid">
+                    {cat.skills.map((s) => (
+                      <li key={s.code} className="skill-tile card-surface">
+                        <TechBadge code={s.code} size="lg" title={s.name} />
+                        <div>
+                          <strong>{s.name}</strong>
+                          <span>{s.level}</span>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+              ))
+            ) : (
+              <ul className="skills__grid">
+                {a.skills.map((s, i) => (
+                  <Reveal as="li" key={s.code} delay={(i % 4) * 60} className="skill-tile card-surface">
+                    <TechBadge code={s.code} size="lg" title={s.name} />
+                    <div>
+                      <strong>{s.name}</strong>
+                      <span>{s.level}</span>
+                    </div>
+                  </Reveal>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
       </div>
     </section>

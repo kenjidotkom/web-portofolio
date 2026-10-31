@@ -51,7 +51,7 @@ export default function Contact() {
 
             <ul className="contact__info">
               <li><Mail size={16} className="accent-text" /> <a href={`mailto:${person.email}`}>{person.email}</a></li>
-              <li><Phone size={16} className="accent-text" /> <a href={person.whatsapp}>{person.phone}</a></li>
+              <li><Phone size={16} className="accent-text" /> <a href={person.whatsapp} target="_blank" rel="noopener noreferrer">{person.phone}</a></li>
             </ul>
           </div>
 

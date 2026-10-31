@@ -1,5 +1,33 @@
-.competitions { margin-inline: 20px; border-radius: var(--radius-5xl); padding-block: var(--space-24); overflow: clip; }
-.competitions__waves { inset: 0; width: 100%; height: 100%; }
+.competitions {
+  position: relative;
+  margin-inline: 20px;
+  background: #141515 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-5xl);
+  padding-block: var(--space-24);
+  overflow: clip;
+}
+.competitions__waves {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.competitions__sparkle {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+.competitions__sparkle--tl {
+  left: clamp(24px, 4vw, 56px);
+  top: clamp(24px, 4vw, 48px);
+}
+.competitions__sparkle--tr {
+  right: clamp(24px, 4.5vw, 64px);
+  top: clamp(24px, 3.5vw, 40px);
+}
 .competitions__inner { position: relative; z-index: var(--z-content); }
 .competitions .section-head { align-items: flex-end; }
 .competitions .section-head__desc { color: var(--text-tertiary); }
@@ -19,17 +47,112 @@
 
 .competitions__certs-title { margin-block: var(--space-20) var(--space-8); }
 .competitions__certs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
-.cert-card { display: grid; grid-template-columns: 235px 1fr; gap: var(--space-5); padding: var(--space-5); }
-.cert-card__img {
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-2);
-  border-radius: var(--radius-md); background: rgba(0, 0, 0, 0.3); border: 2px dashed rgba(255, 255, 255, 0.3);
-  font-size: var(--fs-caption); color: rgba(255, 255, 255, 0.6); min-height: 160px;
+.cert-card {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--space-5);
+  padding: var(--space-5);
+  align-items: center;
+  border-radius: var(--radius-2xl);
+  transition: transform var(--duration-normal) var(--ease-out-soft),
+              border-color var(--duration-normal) var(--ease-out-soft),
+              box-shadow var(--duration-normal) var(--ease-out-soft);
 }
+.cert-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(217, 242, 14, 0.35);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+.cert-card__img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 190px;
+  max-height: 220px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #0e0e10;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  text-decoration: none;
+}
+
+.cert-card__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--duration-normal) var(--ease-out-soft), filter var(--duration-normal);
+}
+
+.cert-card__photo--finalis-5-besar {
+  object-position: center 35%;
+}
+
+.cert-card__photo--harapan-1 {
+  object-position: center 65%;
+}
+
+.cert-card:hover .cert-card__photo {
+  transform: scale(1.06);
+  filter: brightness(1.08);
+}
+
+.cert-card__zoom-hint {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(12, 12, 12, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lime-400);
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity var(--duration-fast), transform var(--duration-fast);
+}
+
+.cert-card:hover .cert-card__zoom-hint {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.cert-card__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  height: 100%;
+  min-height: 190px;
+  font-size: var(--fs-caption);
+  color: rgba(255, 255, 255, 0.6);
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-lg);
+}
+
 .cert-card__body { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); }
 .cert-card__body h3 { font-size: var(--fs-display-sm); line-height: 36px; color: var(--accent-text); }
 .cert-card__org { font: 600 var(--fs-body-lg)/24px var(--font-body); }
 .cert-card__proj { font-size: var(--fs-body); color: rgba(255, 255, 255, 0.65); }
-.cert-card__btn { border-color: rgba(255, 255, 255, 0.4); padding: 8px 20px; margin-top: var(--space-2); }
+.cert-card__btn {
+  border-color: rgba(255, 255, 255, 0.3);
+  padding: 8px 22px;
+  margin-top: var(--space-2);
+  transition: background var(--duration-fast), border-color var(--duration-fast), color var(--duration-fast), transform var(--duration-fast);
+}
+.cert-card__btn:hover {
+  border-color: var(--lime-400);
+  background: rgba(217, 242, 14, 0.12);
+  color: var(--lime-300);
+}
 
 @media (max-width: 1023px) {
   .competitions__grid { grid-template-columns: 1fr 1fr; }

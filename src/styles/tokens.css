@@ -18,6 +18,7 @@
   --font-display: "Chewy", "Comic Sans MS", cursive;
   --font-body: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-script: "Yellowtail", cursive;
+  --font-accent: "Yellowtail", cursive;
 
   /* Type scale */
   --fs-display-2xl: clamp(3.5rem, 2rem + 7vw, 7.5rem);

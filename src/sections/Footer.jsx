@@ -24,8 +24,8 @@ export default function Footer() {
             </a>
             <p>{f.desc}</p>
             <div className="footer__social">
-              <a href={person.instagram} aria-label="Instagram"><Instagram size={20} /></a>
-              <a href={person.whatsapp} aria-label="WhatsApp"><MessageCircle size={20} /></a>
+              <a href={person.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram (@seishu1nui)"><Instagram size={20} /></a>
+              <a href={person.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><MessageCircle size={20} /></a>
               <a href={`mailto:${person.email}`} aria-label="Email"><Mail size={20} /></a>
             </div>
           </div>
@@ -39,8 +39,8 @@ export default function Footer() {
             <h3>Kontak</h3>
             <ul>
               <li><a href={`mailto:${person.email}`}>{person.email}</a></li>
-              <li><a href={person.whatsapp}>{person.phone}</a></li>
-              <li><a href={person.instagram}>Instagram</a></li>
+              <li><a href={person.whatsapp} target="_blank" rel="noopener noreferrer">{person.phone}</a></li>
+              <li><a href={person.instagram} target="_blank" rel="noopener noreferrer">{person.instagramHandle}</a></li>
             </ul>
           </div>
         </div>

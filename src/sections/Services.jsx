@@ -1,11 +1,15 @@
 import Reveal from '../components/ui/Reveal';
-import Character from '../components/ui/Character';
 import { IconCircle } from '../components/ui/Button';
 import { TechBadge } from '../components/ui/Chip';
 import { Sparkle } from '../components/ui/Decor';
-import { crest } from '../assets';
+import { crest, uiuxDesign, frontEnd } from '../assets';
 import { services } from '../data/portfolioData';
 import './Services.css';
+
+const SVC_IMGS = {
+  uiux: uiuxDesign,
+  frontend: frontEnd,
+};
 
 export default function Services() {
   return (
@@ -20,21 +24,24 @@ export default function Services() {
         </div>
 
         <ul className="services__grid">
-          {services.items.map((s, i) => (
-            <Reveal as="li" key={s.title} delay={i * 80} className="svc-card">
-              <div className="svc-card__art">
-                <Character skin={s.skin} className="svc-card__char" />
-                <IconCircle tone="ink" size={44} label={`Lihat layanan ${s.title}`} className="svc-card__go" />
-              </div>
-              <div className="svc-card__info" data-surface="ink">
-                <h3>{s.title}</h3>
-                <p>{s.desc}</p>
-                <div className="svc-card__tech">
-                  {s.tech.map((t) => <TechBadge key={t} code={t} />)}
+          {services.items.map((s, i) => {
+            const targetHref = s.href || (s.id === 'uiux' ? '#competitions' : '#works');
+            return (
+              <Reveal as="li" key={s.id} delay={i * 80} className="svc-card">
+                <a href={targetHref} className="svc-card__art" title={`Buka ${s.title}`}>
+                  <img src={SVC_IMGS[s.id]} alt={s.title} className="svc-card__img" />
+                  <IconCircle href={targetHref} tone="ink" size={44} label={`Lihat ${s.title}`} className="svc-card__go" />
+                </a>
+                <div className="svc-card__info" data-surface="ink">
+                  <h3><a href={targetHref} className="svc-card__title-link">{s.title}</a></h3>
+                  <p>{s.desc}</p>
+                  <div className="svc-card__tech">
+                    {s.tech.map((t) => <TechBadge key={t} code={t} />)}
+                  </div>
                 </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
         </ul>
 
         <Reveal className="services__stats" data-surface="ink">
@@ -49,4 +56,3 @@ export default function Services() {
     </section>
   );
 }
-

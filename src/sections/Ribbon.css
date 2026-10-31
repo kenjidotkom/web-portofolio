@@ -1,21 +1,107 @@
-.ribbon { position: relative; height: 280px; padding-block: var(--space-20); overflow: clip; }
+.ribbon {
+  position: relative;
+  height: 280px;
+  padding-block: var(--space-20);
+  overflow: clip;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .ribbon__band {
-  position: absolute; left: -24px; width: calc(100% + 48px); height: 80px; overflow: hidden;
-  display: flex; align-items: center; box-shadow: var(--shadow-md);
+  position: absolute;
+  left: -5%;
+  width: 110%;
+  height: 80px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  pointer-events: auto;
 }
-.ribbon__band--1 { top: 80px; background: var(--lime-400); color: #0c0c0c; transform: rotate(-2deg); }
-.ribbon__band--2 { top: 120px; background: var(--ribbon-2-bg); color: var(--ribbon-2-text); transform: rotate(1.5deg); }
 
-.ribbon__track { display: flex; width: max-content; }
-.ribbon__group { display: flex; align-items: center; gap: var(--space-8); padding-right: var(--space-8); }
-.ribbon__group li { display: flex; align-items: center; gap: var(--space-8); white-space: nowrap; }
-.ribbon__group span { font: 400 var(--fs-display-md)/48px var(--font-display); }
-.ribbon__sep { position: static; flex-shrink: 0; }
-
-@media (prefers-reduced-motion: no-preference) {
-  .ribbon__track { animation: marquee 36s linear infinite; }
-  .ribbon__band--2 .ribbon__track { animation-direction: reverse; }
-  .ribbon__band:hover .ribbon__track { animation-play-state: paused; }
+/* Pita 1: Warna Lime, Miring -2 derajat */
+.ribbon__band--1 {
+  background: var(--lime-400);
+  color: #0c0c0c;
+  transform: rotate(-2deg);
+  z-index: 1;
 }
-@keyframes marquee { to { transform: translateX(-50%); } }
 
+/* Pita 2: Warna Putih, Miring +1.5 derajat (menimpa pita 1) */
+.ribbon__band--2 {
+  background: var(--ribbon-2-bg, #ffffff);
+  color: var(--ribbon-2-text, #0c0c0c);
+  transform: rotate(1.5deg);
+  z-index: 2;
+}
+
+:root[data-theme="light"] .ribbon__band--2 {
+  background: #0c0c0c;
+  color: #f6f9dc;
+}
+
+/* Track Animasi Jalan Terus Menerus */
+.ribbon__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: ribbonMarquee 24s linear infinite;
+}
+
+/* Pita 2 berjalan berlawanan arah */
+.ribbon__band--2 .ribbon__track {
+  animation: ribbonMarqueeReverse 28s linear infinite;
+}
+
+/* Hover untuk jeda lembut jika user ingin membaca */
+.ribbon__band:hover .ribbon__track {
+  animation-play-state: paused;
+}
+
+.ribbon__group {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding-right: 32px;
+}
+
+.ribbon__group li {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  white-space: nowrap;
+}
+
+.ribbon__group span {
+  font: 400 var(--fs-display-md)/48px var(--font-display);
+  letter-spacing: 0.5px;
+}
+
+/* Pemisah Bintang Merah di antara kata */
+.ribbon__sep {
+  position: static !important;
+  display: inline-block !important;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+/* Keyframes Berjalan ke Kiri */
+@keyframes ribbonMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Keyframes Berjalan ke Kanan (Arah Sebaliknya) */
+@keyframes ribbonMarqueeReverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
