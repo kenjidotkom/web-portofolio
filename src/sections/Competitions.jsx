@@ -6,6 +6,7 @@ import { IconCircle } from '../components/ui/Button';
 import Button from '../components/ui/Button';
 import { Starburst, Waves, Sparkle } from '../components/ui/Decor';
 import { competitions as c } from '../data/portfolioData';
+import { caseHref } from '../hooks/useHashRoute';
 import './Competitions.css';
 
 export default function Competitions() {
@@ -24,12 +25,13 @@ export default function Competitions() {
 
         <ul className="competitions__grid">
           {c.items.map((it, i) => (
-            <Reveal as="li" key={it.n} delay={(i % 3) * 80} className="card-glass comp-card">
+            <Reveal as="li" key={it.n} delay={(i % 3) * 80} className="card-glass comp-card" style={{ cursor: 'pointer' }}
+              onClick={() => { window.location.hash = caseHref(it.slug); }}>
               <div className="comp-card__cover" style={{ background: it.color }}>
                 <Starburst size={176} color={it.burst || 'var(--red-500)'} className="comp-card__burst" style={{ left: -40, top: -40 }} />
                 <img src={compCovers[it.slug]} alt="" className="comp-card__char" loading="lazy" />
                 <span className="comp-card__n">{it.n}</span>
-                <IconCircle tone="lime" size={48} label={`Lihat ${it.title}`} className="comp-card__go" />
+                <IconCircle tone="lime" size={48} href={caseHref(it.slug)} label={`Lihat studi kasus ${it.title}`} className="comp-card__go" onClick={(e) => e.stopPropagation()} />
               </div>
               <div className="comp-card__body">
                 <div className="comp-card__meta">

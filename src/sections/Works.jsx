@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react';
 import Reveal from '../components/ui/Reveal';
 import { workCovers } from '../assets';
 import { Chip } from '../components/ui/Chip';
-import { IconCircle } from '../components/ui/Button';
+import Button, { IconCircle } from '../components/ui/Button';
 import { Starburst } from '../components/ui/Decor';
 import { works, workFilters } from '../data/portfolioData';
+import { caseHref } from '../hooks/useHashRoute';
 import './Works.css';
 
 export default function Works() {
@@ -61,14 +62,15 @@ export default function Works() {
         <div className="works__track" ref={trackRef} onScroll={onScroll}
           role="group" aria-roledescription="carousel" aria-label="Daftar proyek">
           {list.map((w, i) => (
-            <article key={w.id} className="work-card" style={{ background: w.color }}
-              aria-label={`${i + 1} dari ${list.length}: ${w.title}`}>
+            <article key={w.id} className="work-card" style={{ background: w.color, cursor: 'pointer' }}
+              aria-label={`${i + 1} dari ${list.length}: ${w.title}`}
+              onClick={() => { window.location.hash = caseHref(w.slug); }}>
               <Starburst size={176} color={w.burst} className="work-card__burst" />
               <img src={workCovers[w.slug]} alt="" className="work-card__char" loading="lazy" />
               {w.award && <Chip variant="lime" className="work-card__award">{w.award}</Chip>}
               <div className="work-card__shade" />
               <h3 className="work-card__title">{w.title}</h3>
-              <IconCircle tone="white" size={48} label={`Buka studi kasus ${w.title}`} className="work-card__go" />
+              <IconCircle tone="white" size={48} href={caseHref(w.slug)} label={`Buka studi kasus ${w.title}`} className="work-card__go" onClick={(e) => e.stopPropagation()} />
             </article>
           ))}
         </div>
@@ -90,10 +92,11 @@ export default function Works() {
           <div className="works__types">{current.types.map((t) => <Chip key={t} variant="dark">{t}</Chip>)}</div>
           <div className="works__name">
             <h3>{current.title}</h3>
-            <IconCircle tone="lime" size={40} label={`Buka ${current.title}`} />
+            <IconCircle tone="lime" size={40} href={caseHref(current.slug)} label={`Buka ${current.title}`} />
           </div>
           <p className="works__cat">{current.cat}</p>
           <p className="works__desc">{current.desc}</p>
+          <Button href={caseHref(current.slug)} icon={ArrowUpRight} className="works__case-btn">Baca studi kasus</Button>
         </div>
       )}
     </section>
