@@ -72,7 +72,7 @@ export const services = {
   ],
 };
 
-export const ribbonWords = ['UI/UX Design', 'Prototyping', 'User Flow', 'Front-End', 'Design System', 'Motion Graphic', 'Video Editing'];
+export const ribbonWords = ['UI/UX Design', 'User Flow', 'Wireframing', 'Prototyping', 'Design System', 'Front-End', 'React', 'Responsive Web'];
 
 export const workFilters = ['Semua', 'Klien', 'Lomba', 'PKL'];
 export const works = [
