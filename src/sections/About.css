@@ -23,7 +23,12 @@
 .about__edu p { font-size: var(--fs-body); }
 
 .about__stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
-.about__stats dt { font: 400 var(--fs-display-md)/1 var(--font-display); }
+.about__stats dt {
+  font-family: var(--font-display), "Chewy", cursive !important;
+  font-size: clamp(32px, 3.5vw, 44px);
+  line-height: 1;
+  font-weight: 400;
+}
 .about__stats dd { font-size: var(--fs-body); color: var(--text-tertiary); }
 .about__cta { display: flex; flex-wrap: wrap; gap: var(--space-3); padding-top: var(--space-4); }
 

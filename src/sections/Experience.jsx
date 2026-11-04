@@ -16,7 +16,7 @@ export default function Experience() {
           {e.items.map((it, i) => (
             <Reveal
               as="li"
-              key={it.org}
+              key={`${it.org}-${it.period}`}
               variant={i % 2 === 0 ? 'slide-right' : 'slide-left'}
               delay={i * 90}
               className="timeline__item"
