@@ -30,12 +30,24 @@ function useActiveSection(ids) {
   useEffect(() => {
     const els = ids.map((id) => document.getElementById(id)).filter(Boolean);
     const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
-      { rootMargin: '-30% 0px -60% 0px' }
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(e.target.id);
+        });
+      },
+      { rootMargin: '-15% 0px -55% 0px' }
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
   }, [ids]);
+
+  useEffect(() => {
+    const btn = document.querySelector(`.cs-side__link[data-nav-id="${active}"]`);
+    if (btn && btn.scrollIntoView && window.innerWidth <= 1080) {
+      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }, [active]);
+
   return active;
 }
 
@@ -54,7 +66,7 @@ function CheckList({ items }) {
   return (
     <ul className="cs-check">
       {items.map((t) => (
-        <li key={t}><span className="cs-check__dot"><Check size={12} strokeWidth={3} /></span>{t}</li>
+        <li key={t}><span className="cs-check__dot"><Check size={12} strokeWidth={3} /></span><span>{t}</span></li>
       ))}
     </ul>
   );
@@ -65,8 +77,8 @@ export default function CaseStudy({ slug }) {
   const active = useActiveSection(NAV.map((n) => n.id));
 
   useEffect(() => {
-    document.title = c ? `${c.title} — Studi Kasus · Choirun Nisa` : 'Proyek tidak ditemukan';
-    return () => { document.title = 'Choirun Nisa — UI/UX & Front-End'; };
+    document.title = c ? `${c.title} — Portofolio Choirun` : 'Portofolio Choirun';
+    return () => { document.title = 'Portofolio Choirun'; };
   }, [c]);
 
   if (!c) {
@@ -136,7 +148,7 @@ export default function CaseStudy({ slug }) {
             <ul>
               {NAV.map((n) => (
                 <li key={n.id}>
-                  <button type="button" className={`cs-side__link ${active === n.id ? 'is-active' : ''}`}
+                  <button type="button" data-nav-id={n.id} className={`cs-side__link ${active === n.id ? 'is-active' : ''}`}
                     onClick={() => goTo(n.id)} aria-current={active === n.id ? 'true' : undefined}>
                     {n.label}
                   </button>
