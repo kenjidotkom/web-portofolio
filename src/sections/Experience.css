@@ -21,9 +21,40 @@
 :root[data-theme="light"] .timeline__dot--2 { background: #0c0c0c; }
 
 @media (max-width: 767px) {
-  .timeline::before { left: 12px; }
-  .timeline__item { grid-template-columns: 1fr; gap: var(--space-2); padding-left: 48px; }
-  .timeline__node { left: 12px; }
-  .timeline__left { text-align: left; }
+  .timeline {
+    gap: 32px;
+  }
+  .timeline::before {
+    left: 14px;
+  }
+  .timeline__item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding-left: 42px;
+  }
+  .timeline__node {
+    left: 14px;
+    top: 4px;
+  }
+  .timeline__left {
+    text-align: left;
+  }
+  .timeline__left h3 {
+    font-size: 1.35rem;
+    line-height: 1.25;
+  }
+  .timeline__left time {
+    font-size: 0.85rem;
+  }
+  .timeline__right h4 {
+    font-size: 1.05rem;
+    line-height: 1.35;
+    margin-top: 2px;
+  }
+  .timeline__right p {
+    font-size: 0.88rem;
+    line-height: 1.45;
+    margin-top: 2px;
+  }
 }
 

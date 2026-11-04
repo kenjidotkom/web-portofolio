@@ -149,3 +149,31 @@
     width: 100%;
   }
 }
+
+@media (max-width: 480px) {
+  .nav {
+    top: 10px;
+    width: calc(100% - 20px);
+    border-radius: var(--radius-xl);
+  }
+  .nav__bar {
+    padding: 6px 10px;
+  }
+  .nav__logo {
+    padding-inline: 0;
+    gap: 8px;
+  }
+  .nav__logo-mark {
+    width: 34px;
+    height: 34px;
+  }
+  .nav__logo-text {
+    font-size: 1.25rem;
+  }
+  .nav__toggle,
+  .nav__menu-btn {
+    width: 36px;
+    height: 36px;
+    margin-left: 6px;
+  }
+}

@@ -159,8 +159,55 @@
   .competitions__certs { grid-template-columns: 1fr; }
 }
 @media (max-width: 639px) {
-  .competitions { margin-inline: 8px; border-radius: var(--radius-3xl); }
-  .competitions__grid { grid-template-columns: 1fr; }
-  .cert-card { grid-template-columns: 1fr; }
+  .competitions {
+    margin-inline: 8px;
+    border-radius: var(--radius-3xl);
+    padding-block: 40px 32px;
+  }
+  .competitions__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .comp-card__cover {
+    height: 180px;
+    margin: 8px;
+  }
+  .comp-card__body {
+    padding: 12px 16px 18px;
+    gap: 8px;
+  }
+  .comp-card__body h3 {
+    font-size: 1.35rem;
+    line-height: 1.25;
+  }
+  .comp-card__body p {
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+  .competitions__certs-title {
+    margin-block: 36px 18px;
+  }
+  .competitions__certs {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .cert-card {
+    grid-template-columns: 1fr;
+    padding: 14px;
+    gap: 12px;
+    border-radius: var(--radius-xl);
+  }
+  .cert-card__img {
+    min-height: 170px;
+    max-height: 190px;
+  }
+  .cert-card__body h3 {
+    font-size: 1.35rem;
+    line-height: 1.25;
+  }
+  .cert-card__btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 

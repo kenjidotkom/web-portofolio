@@ -14,6 +14,14 @@ export default function SectionFx({ children, className = '' }) {
     if (!el) return undefined;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
 
+    // Pada layar ponsel (< 768px), nonaktifkan scale & clipPath berat agar scroll di HP 100% mulus, natural, dan tidak terpotong
+    if (window.innerWidth < 768) {
+      el.style.transform = '';
+      el.style.opacity = '';
+      el.style.clipPath = '';
+      return undefined;
+    }
+
     let raf = 0;
     const clamp = (v) => Math.min(Math.max(v, 0), 1);
     const ease = (t) => 1 - Math.pow(1 - t, 3);

@@ -46,3 +46,49 @@
 
 /* Tombol menuju halaman studi kasus */
 .works__case-btn { margin-top: var(--space-4); }
+
+@media (max-width: 639px) {
+  .works__filters {
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .filter-pill {
+    min-height: 36px;
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+  .work-card {
+    height: 310px;
+    border-radius: var(--radius-xl);
+    flex: 0 0 90%;
+  }
+  .work-card__title {
+    font-size: 1.65rem;
+    left: 16px;
+    bottom: 16px;
+  }
+  .work-card__award {
+    left: 14px;
+    top: 14px;
+    padding: 4px 12px;
+    font-size: 11px;
+  }
+  .work-card__go {
+    right: 14px;
+    top: 14px;
+  }
+  .works__detail {
+    margin-top: 24px;
+    gap: 8px;
+  }
+  .works__name {
+    padding-top: 12px;
+  }
+  .works__name h3 {
+    font-size: 1.55rem;
+  }
+  .works__desc {
+    font-size: 14px;
+    line-height: 22px;
+  }
+}

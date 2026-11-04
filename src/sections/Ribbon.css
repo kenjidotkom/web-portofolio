@@ -105,3 +105,27 @@
     transform: translateX(0);
   }
 }
+
+@media (max-width: 639px) {
+  .ribbon {
+    height: 180px;
+    padding-block: 20px;
+  }
+  .ribbon__band {
+    height: 52px;
+  }
+  .ribbon__group {
+    gap: 18px;
+    padding-right: 18px;
+  }
+  .ribbon__group li {
+    gap: 18px;
+  }
+  .ribbon__group span {
+    font-size: 1.45rem;
+    line-height: 36px;
+  }
+  .ribbon__sep {
+    transform: scale(0.72);
+  }
+}

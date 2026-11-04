@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import Reveal from '../components/ui/Reveal';
-import CountUp from '../components/ui/CountUp';
 import { IconCircle } from '../components/ui/Button';
 import { TechBadge } from '../components/ui/Chip';
 import { Sparkle } from '../components/ui/Decor';
@@ -88,9 +87,7 @@ export default function Services() {
         <Reveal variant="scale-up" delay={200} className="services__stats" data-surface="ink">
           {services.stats.map((s) => (
             <div key={s.label}>
-              <strong>
-                <CountUp value={s.value} />
-              </strong>
+              <strong>{s.value}</strong>
               <span>{s.label}</span>
             </div>
           ))}

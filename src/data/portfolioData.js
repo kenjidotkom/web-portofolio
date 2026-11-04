@@ -113,7 +113,7 @@ export const experience = {
     { org: 'Project PKL', period: '2023', role: 'Front-End Developer Intern', desc: 'Membangun dashboard internal dengan React dan berkolaborasi dengan tim desain.' },
     { org: 'Kuliah di IPB', period: '2024', role: 'Teknologi Rekayasa Perangkat Lunak', desc: 'Kuliah di IPB jurusan Teknologi Rekayasa Perangkat Lunak dan sudah mempunyai 4 project.' },
     { org: 'Himpunan Mahasiswa', period: '2024 – Sekarang', role: 'HIMAVO MICRO IT — Staf Desain & Media', desc: 'Merancang materi visual dan dokumentasi untuk 5 event kampus.' },
-    { org: 'Komunitas Design', period: '2026 – Sekarang', role: 'Anggota Aktif', desc: 'Mengikuti workshop dan sesi kritik desain mingguan.' },
+    { org: 'GDGOC IPB University', period: '2026 – Sekarang', role: 'Media & Creative — Staf / Anggota Aktif', desc: 'Merancang konten visual, materi publikasi, dan aset kreatif sebagai staf/anggota aktif divisi Media & Creative GDGOC IPB University.' },
     { org: 'Freelance', period: '2026 – Sekarang', role: 'Pengajar Coding Scratch', desc: 'Mengajar coding Scratch untuk anak 4 SD secara freelance, mengenalkan logika pemrograman lewat proyek game dan animasi sederhana.' },
   ],
 };

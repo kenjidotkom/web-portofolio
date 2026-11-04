@@ -14,5 +14,36 @@
 .footer li a:hover { color: var(--lime-400); }
 .footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2); font-size: var(--fs-body); color: rgba(255, 255, 255, 0.7); }
 
-@media (max-width: 767px) { .footer__cols { grid-template-columns: 1fr; } }
+@media (max-width: 767px) {
+  .footer {
+    border-radius: var(--radius-4xl) var(--radius-4xl) 0 0;
+    padding: 40px 0 24px;
+  }
+  .footer__top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .footer__top h2 {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+  .footer__top .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .footer__hr {
+    margin-block: 24px;
+  }
+  .footer__cols {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .footer__bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    font-size: 13px;
+  }
+}
 

@@ -93,6 +93,21 @@
   transform: perspective(1000px) rotateY(0deg) scale(1);
 }
 
+@media (max-width: 640px) {
+  .reveal--slide-left {
+    transform: translateX(24px);
+  }
+  .reveal--slide-right {
+    transform: translateX(-24px);
+  }
+  .reveal--tilt {
+    transform: translateY(28px);
+  }
+  .reveal--flip {
+    transform: translateY(24px) scale(0.96);
+  }
+}
+
 /* ===== SCROLL PROGRESS BAR (Indikator scroll neon lime di bawah navbar) ===== */
 .scroll-progress {
   position: fixed;

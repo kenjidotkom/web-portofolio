@@ -50,6 +50,24 @@ ul, ol { list-style: none; }
 .h-display-lg { font-size: var(--fs-display-lg); line-height: 1; }
 .accent-text { color: var(--accent-text); }
 
+@media (max-width: 767px) {
+  .section {
+    padding-block: 56px 44px;
+  }
+  .section-head {
+    margin-bottom: 24px;
+    gap: 12px;
+  }
+  .h-display-xl {
+    font-size: clamp(2.2rem, 1.8rem + 3.5vw, 3.2rem);
+    line-height: 1.05;
+  }
+  .h-display-lg {
+    font-size: clamp(1.85rem, 1.5rem + 2.5vw, 2.4rem);
+    line-height: 1.1;
+  }
+}
+
 /* Judul section dgn kata sorot */
 .section-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--space-6); margin-bottom: var(--space-14); }
 .section-head--center { justify-content: center; text-align: center; }
