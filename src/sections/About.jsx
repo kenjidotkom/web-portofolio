@@ -1,6 +1,5 @@
 import { GraduationCap, Download, ArrowUpRight } from 'lucide-react';
 import Reveal from '../components/ui/Reveal';
-import CountUp from '../components/ui/CountUp';
 import Button from '../components/ui/Button';
 import { TechBadge } from '../components/ui/Chip';
 import { about as aboutArt } from '../assets';
@@ -35,7 +34,7 @@ export default function About() {
             <dl className="about__stats">
               {a.stats.map((s) => (
                 <div key={s.label}>
-                  <dt><CountUp value={s.value} /></dt>
+                  <dt>{s.value}</dt>
                   <dd>{s.label}</dd>
                 </div>
               ))}
