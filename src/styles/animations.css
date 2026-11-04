@@ -118,7 +118,8 @@
 /* ===== ANIMATED NUMBER (COUNTUP) ===== */
 .count-up {
   display: inline-block;
-  font-variant-numeric: tabular-nums;
+  font-family: inherit;
+  color: inherit;
   will-change: contents;
 }
 .count-up.is-animating {
