@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Award, ArrowUpRight, ExternalLink, X, FileText, CheckCircle2, FolderArchive, Eye, Sparkles } from 'lucide-react';
+import { Award, ArrowUpRight, ExternalLink, X, FileText, FolderArchive, Eye, Sparkles } from 'lucide-react';
 import Reveal from '../components/ui/Reveal';
 import Button from '../components/ui/Button';
 import { Chip } from '../components/ui/Chip';

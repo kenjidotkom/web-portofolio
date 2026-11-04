@@ -4,6 +4,7 @@ import Services from './sections/Services';
 import Ribbon from './sections/Ribbon';
 import Works from './sections/Works';
 import Competitions from './sections/Competitions';
+import Certifications from './sections/Certifications';
 import Experience from './sections/Experience';
 import StyleSection from './sections/StyleSection';
 import About from './sections/About';
@@ -30,6 +31,7 @@ export default function App() {
             <SectionFx><Ribbon /></SectionFx>
             <SectionFx><Works /></SectionFx>
             <SectionFx><Competitions /></SectionFx>
+            <SectionFx><Certifications /></SectionFx>
             <SectionFx><Experience /></SectionFx>
             <SectionFx><StyleSection /></SectionFx>
             <SectionFx><About /></SectionFx>

@@ -1,6 +1,6 @@
-import { Award, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import Reveal from '../components/ui/Reveal';
-import { compCovers, certCovers, certPdfs } from '../assets';
+import { compCovers } from '../assets';
 import { Chip } from '../components/ui/Chip';
 import { IconCircle } from '../components/ui/Button';
 import Button from '../components/ui/Button';
@@ -47,59 +47,17 @@ export default function Competitions() {
           ))}
         </ul>
 
-        <Reveal as="h2" variant="fade-up" className="h-display-lg competitions__certs-title">
-          {c.certsTitleA} <span className="accent-text">{c.certsTitleHl}</span>
+        <Reveal variant="fade-up" className="competitions__cta-wrap">
+          <div className="competitions__cta">
+            <div>
+              <h3>Pencapaian & Sertifikasi Terverifikasi</h3>
+              <p>Lihat arsip lengkap sertifikat kejuaraan nasional, kepanitiaan, dan lisensi industri.</p>
+            </div>
+            <Button href="#certifications" variant="primary" icon={ArrowUpRight}>
+              Lihat Seluruh Sertifikat ({c.certs?.length || 2}+)
+            </Button>
+          </div>
         </Reveal>
-        <ul className="competitions__certs">
-          {c.certs.map((cert, i) => {
-            const coverImg = certCovers[cert.id];
-            const pdfUrl = certPdfs[cert.id];
-            return (
-              <Reveal as="li" key={cert.title} variant="scale-up" delay={i * 120} className="card-glass cert-card">
-                <a
-                  href={pdfUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cert-card__img"
-                  title={`Lihat sertifikat ${cert.title}`}
-                >
-                  {coverImg ? (
-                    <img
-                      src={coverImg}
-                      alt={`Dokumentasi ${cert.title}`}
-                      className={`cert-card__photo cert-card__photo--${cert.id}`}
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="cert-card__placeholder">
-                      <Award size={32} aria-hidden="true" />
-                      <span>Gambar sertifikat</span>
-                    </div>
-                  )}
-                  <span className="cert-card__zoom-hint" aria-hidden="true">
-                    <ArrowUpRight size={18} />
-                  </span>
-                </a>
-                <div className="cert-card__body">
-                  <Chip variant="lime">{cert.kind}</Chip>
-                  <h3>{cert.title}</h3>
-                  <p className="cert-card__org">{cert.org}</p>
-                  <p className="cert-card__proj">Proyek: {cert.project}</p>
-                  <Button
-                    href={pdfUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variant="outline"
-                    icon={ArrowUpRight}
-                    className="cert-card__btn"
-                  >
-                    Lihat sertifikat
-                  </Button>
-                </div>
-              </Reveal>
-            );
-          })}
-        </ul>
       </div>
     </section>
   );
