@@ -7,14 +7,20 @@ export default function Experience() {
     <section id="experience" className="section experience">
       <div className="container container--sm">
         <div className="section-head section-head--center">
-          <Reveal as="h2" className="h-display-xl">
+          <Reveal as="h2" variant="fade-up" className="h-display-xl">
             {e.titleA} <span className="accent-text">{e.titleHl}</span>
           </Reveal>
         </div>
 
         <ol className="timeline">
           {e.items.map((it, i) => (
-            <Reveal as="li" key={it.org} delay={80} className="timeline__item">
+            <Reveal
+              as="li"
+              key={it.org}
+              variant={i % 2 === 0 ? 'slide-right' : 'slide-left'}
+              delay={i * 90}
+              className="timeline__item"
+            >
               <div className="timeline__left">
                 <h3>{it.org}</h3>
                 <time>{it.period}</time>

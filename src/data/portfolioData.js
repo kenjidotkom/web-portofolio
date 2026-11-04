@@ -110,6 +110,7 @@ export const experience = {
   titleA: 'Perjalanan',
   titleHl: 'Kerjaku',
   items: [
+    { org: 'Freelance', period: '2026 – Sekarang', role: 'Pengajar Coding Scratch', desc: 'Mengajar coding Scratch untuk 4 anak SD secara freelance, mengenalkan logika pemrograman lewat proyek game dan animasi sederhana.' },
     { org: 'Project PKL', period: '2025', role: 'Front-End Developer Intern', desc: 'Membangun dashboard internal dengan React dan berkolaborasi dengan tim desain.' },
     { org: 'Kuliah di IPB', period: '2024 – Sekarang', role: 'Teknologi Rekayasa Perangkat Lunak', desc: 'Kuliah di IPB jurusan Teknologi Rekayasa Perangkat Lunak dan sudah mempunyai 4 project.' },
     { org: 'Himpunan Mahasiswa', period: '2024 – 2025', role: 'Staf Desain & Media', desc: 'Merancang materi visual dan dokumentasi untuk 5 event kampus.' },

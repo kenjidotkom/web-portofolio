@@ -17,15 +17,15 @@ export default function Competitions() {
       <Sparkle size={18} color="var(--lime-400)" className="competitions__sparkle competitions__sparkle--tr" />
       <div className="container container--md competitions__inner">
         <div className="section-head">
-          <Reveal as="h2" className="h-display-xl">
+          <Reveal as="h2" variant="fade-up" className="h-display-xl">
             {c.titleA} <span className="accent-text">{c.titleHl}</span> {c.titleB}
           </Reveal>
-          <Reveal as="p" delay={80} className="section-head__desc">{c.desc}</Reveal>
+          <Reveal as="p" variant="fade-up" delay={80} className="section-head__desc">{c.desc}</Reveal>
         </div>
 
         <ul className="competitions__grid">
           {c.items.map((it, i) => (
-            <Reveal as="li" key={it.n} delay={(i % 3) * 80} className="card-glass comp-card" style={{ cursor: 'pointer' }}
+            <Reveal as="li" key={it.n} variant="tilt" delay={(i % 3) * 120} className="card-glass comp-card" style={{ cursor: 'pointer' }}
               onClick={() => { window.location.hash = caseHref(it.slug); }}>
               <div className="comp-card__cover" style={{ background: it.color }}>
                 <Starburst size={176} color={it.burst || 'var(--red-500)'} className="comp-card__burst" style={{ left: -40, top: -40 }} />
@@ -47,7 +47,7 @@ export default function Competitions() {
           ))}
         </ul>
 
-        <Reveal as="h2" className="h-display-lg competitions__certs-title">
+        <Reveal as="h2" variant="fade-up" className="h-display-lg competitions__certs-title">
           {c.certsTitleA} <span className="accent-text">{c.certsTitleHl}</span>
         </Reveal>
         <ul className="competitions__certs">
@@ -55,7 +55,7 @@ export default function Competitions() {
             const coverImg = certCovers[cert.id];
             const pdfUrl = certPdfs[cert.id];
             return (
-              <Reveal as="li" key={cert.title} delay={i * 80} className="card-glass cert-card">
+              <Reveal as="li" key={cert.title} variant="scale-up" delay={i * 120} className="card-glass cert-card">
                 <a
                   href={pdfUrl}
                   target="_blank"

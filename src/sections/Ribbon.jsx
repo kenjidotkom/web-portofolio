@@ -1,3 +1,4 @@
+import Reveal from '../components/ui/Reveal';
 import { Sparkle } from '../components/ui/Decor';
 import { ribbonWords } from '../data/portfolioData';
 import './Ribbon.css';
@@ -23,10 +24,10 @@ function Track() {
 
 export default function Ribbon() {
   return (
-    <section className="ribbon" aria-label="Keahlian utama">
+    <Reveal as="section" variant="scale-up" duration={700} className="ribbon" aria-label="Keahlian utama">
       <div className="ribbon__band ribbon__band--1"><Track /></div>
       <div className="ribbon__band ribbon__band--2"><Track /></div>
-    </section>
+    </Reveal>
   );
 }
 

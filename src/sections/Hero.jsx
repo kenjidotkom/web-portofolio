@@ -17,12 +17,12 @@ export default function Hero() {
       </div>
 
       <div className="container hero__inner">
-        <Reveal className="hero__badge">
+        <Reveal variant="pop" delay={50} className="hero__badge">
           <span>{hero.badge}</span>
           <Rays className="hero__rays" />
         </Reveal>
 
-        <Reveal as="h1" delay={80} className="hero__title">
+        <Reveal as="h1" variant="fade-up" delay={120} className="hero__title">
           {hero.lead}{' '}
           <span className="hero__hl">{hero.highlight}</span>
           <br />
@@ -30,7 +30,7 @@ export default function Hero() {
         </Reveal>
 
         <div className="hero__grid">
-          <Reveal delay={160} className="hero__left">
+          <Reveal variant="slide-right" delay={200} className="hero__left">
             <p className="hero__lead">{hero.paragraph}</p>
             <figure className="hero__quote">
               <Quote size={40} className="accent-text" aria-hidden="true" />
@@ -39,7 +39,7 @@ export default function Hero() {
             </figure>
           </Reveal>
 
-          <Reveal delay={240} className="hero__center">
+          <Reveal variant="scale-up" delay={160} className="hero__center">
             <div className="hero__avatar-stage">
               {/* Lingkaran latar belakang lime */}
               <div className="hero__avatar-bg" />
@@ -82,7 +82,7 @@ export default function Hero() {
             </div>
           </Reveal>
 
-          <Reveal delay={320} className="hero__right">
+          <Reveal variant="slide-left" delay={240} className="hero__right">
             <div className="hero__stars" aria-label="Rating 5 dari 5">
               {Array.from({ length: 5 }, (_, i) => <Star key={i} size={24} fill="currentColor" />)}
             </div>

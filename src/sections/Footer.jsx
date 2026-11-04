@@ -9,14 +9,14 @@ export default function Footer() {
   return (
     <footer className="footer" data-surface="ink">
       <div className="container">
-        <Reveal className="footer__top">
+        <Reveal variant="fade-up" className="footer__top">
           <h2 className="h-display-xl">{f.cta}</h2>
           <Button href={`mailto:${person.email}`} size="lg" icon={ArrowUpRight}>Hire me</Button>
         </Reveal>
 
         <hr className="footer__hr" />
 
-        <div className="footer__cols">
+        <Reveal variant="fade-up" delay={100} className="footer__cols">
           <div className="footer__brand">
             <a href="#hero" className="footer__logo">
               <span className="footer__logo-mark"><Sparkle size={20} color="#0c0c0c" style={{ position: 'static' }} /></span>
@@ -43,7 +43,7 @@ export default function Footer() {
               <li><a href={person.instagram} target="_blank" rel="noopener noreferrer">{person.instagramHandle}</a></li>
             </ul>
           </div>
-        </div>
+        </Reveal>
 
         <hr className="footer__hr" />
         <div className="footer__bottom">

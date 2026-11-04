@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { Sparkle } from '../components/ui/Decor';
+import ScrollProgress from '../components/ui/ScrollProgress';
 import { useTheme } from '../hooks/useTheme';
 import { useScrollSpy } from '../hooks/useScrollSpy';
 import { navLeft, navRight, person } from '../data/portfolioData';
@@ -24,6 +25,7 @@ export default function Nav() {
 
   return (
     <header className="nav" data-surface="ink">
+      <ScrollProgress />
       <nav className="nav__bar" aria-label="Navigasi utama">
         <ul className="nav__side nav__side--left">{navLeft.map(link)}</ul>
 

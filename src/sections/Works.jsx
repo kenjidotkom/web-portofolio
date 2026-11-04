@@ -43,12 +43,12 @@ export default function Works() {
     <section id="works" className="section works">
       <div className="container">
         <div className="section-head">
-          <Reveal as="h2" className="h-display-xl">
+          <Reveal as="h2" variant="fade-up" className="h-display-xl">
             Proyek <span className="accent-text">pilihan</span><br />dan studi kasus
           </Reveal>
         </div>
 
-        <Reveal className="works__filters" role="group" aria-label="Filter proyek">
+        <Reveal variant="fade-up" delay={80} className="works__filters" role="group" aria-label="Filter proyek">
           {workFilters.map((f) => (
             <button key={f} className={`filter-pill ${filter === f ? 'is-active' : ''}`}
               aria-pressed={filter === f} onClick={() => setFilter(f)}>
@@ -58,7 +58,7 @@ export default function Works() {
         </Reveal>
       </div>
 
-      <div className="works__viewport container">
+      <Reveal variant="scale-up" delay={120} className="works__viewport container">
         <div className="works__track" ref={trackRef} onScroll={onScroll}
           role="group" aria-roledescription="carousel" aria-label="Daftar proyek">
           {list.map((w, i) => (
@@ -74,9 +74,9 @@ export default function Works() {
             </article>
           ))}
         </div>
-      </div>
+      </Reveal>
 
-      <div className="container works__controls">
+      <Reveal variant="fade-up" delay={100} className="container works__controls">
         <button className="arrow-btn" onClick={() => goTo(index - 1)} aria-label="Proyek sebelumnya"><ChevronLeft size={20} /></button>
         <div className="works__dots">
           {list.map((w, i) => (
@@ -85,10 +85,10 @@ export default function Works() {
           ))}
         </div>
         <button className="arrow-btn" onClick={() => goTo(index + 1)} aria-label="Proyek berikutnya"><ChevronRight size={20} /></button>
-      </div>
+      </Reveal>
 
       {current && (
-        <div className="container works__detail" key={current.id} aria-live="polite">
+        <Reveal variant="fade-up" delay={120} className="container works__detail" key={current.id} aria-live="polite">
           <div className="works__types">{current.types.map((t) => <Chip key={t} variant="dark">{t}</Chip>)}</div>
           <div className="works__name">
             <h3>{current.title}</h3>
@@ -97,7 +97,7 @@ export default function Works() {
           <p className="works__cat">{current.cat}</p>
           <p className="works__desc">{current.desc}</p>
           <Button href={caseHref(current.slug)} icon={ArrowUpRight} className="works__case-btn">Baca studi kasus</Button>
-        </div>
+        </Reveal>
       )}
     </section>
   );

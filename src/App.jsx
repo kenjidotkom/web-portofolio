@@ -10,6 +10,7 @@ import About from './sections/About';
 import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 import CaseStudy from './sections/CaseStudy';
+import SectionFx from './components/ui/SectionFx';
 import { useHashRoute } from './hooks/useHashRoute';
 
 // Urutan section mengikuti DESIGNSYSTEM §1. Halaman detail proyek: `#/proyek/<slug>`.
@@ -25,14 +26,14 @@ export default function App() {
         <>
           <main>
             <Hero />
-            <Services />
-            <Ribbon />
-            <Works />
-            <Competitions />
-            <Experience />
-            <StyleSection />
-            <About />
-            <Contact />
+            <SectionFx><Services /></SectionFx>
+            <SectionFx><Ribbon /></SectionFx>
+            <SectionFx><Works /></SectionFx>
+            <SectionFx><Competitions /></SectionFx>
+            <SectionFx><Experience /></SectionFx>
+            <SectionFx><StyleSection /></SectionFx>
+            <SectionFx><About /></SectionFx>
+            <SectionFx><Contact /></SectionFx>
           </main>
           <Footer />
         </>

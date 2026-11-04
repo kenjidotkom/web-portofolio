@@ -26,7 +26,7 @@ export default function Contact() {
   return (
     <section id="contact" className="section contact">
       <div className="container container--md">
-        <Reveal className="contact__card" data-surface="ink">
+        <Reveal variant="scale-up" className="contact__card" data-surface="ink">
           <div className="contact__form-side">
             <h2 className="h-display-lg">
               {c.titleA}<br /><span className="accent-text">{c.titleHl}</span>

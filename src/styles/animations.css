@@ -1,0 +1,279 @@
+/* ===== SCROLL REVEAL & INTERACTIVE REACT ANIMATIONS ===== */
+
+/* Base state untuk semua elemen reveal */
+.reveal {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition-property: opacity, transform;
+  transition-duration: var(--reveal-duration, 700ms);
+  transition-timing-function: var(--reveal-ease, cubic-bezier(0.16, 1, 0.3, 1));
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* Fallback default untuk .reveal tanpa variant */
+.reveal:not([class*="reveal--"]) {
+  transform: translateY(32px);
+}
+.reveal:not([class*="reveal--"]).is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Variant 1: Fade Up (Halus & Modern) */
+.reveal--fade-up {
+  transform: translateY(36px);
+}
+.reveal--fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Variant 2: Fade Down (Turun dari atas) */
+.reveal--fade-down {
+  transform: translateY(-36px);
+}
+.reveal--fade-down.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Variant 3: Slide Left (Masuk dari kanan ke kiri) */
+.reveal--slide-left {
+  transform: translateX(54px);
+}
+.reveal--slide-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Variant 4: Slide Right (Masuk dari kiri ke kanan) */
+.reveal--slide-right {
+  transform: translateX(-54px);
+}
+.reveal--slide-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Variant 5: Scale Up (Zoom in lembut & elegan) */
+.reveal--scale-up {
+  transform: scale(0.9) translateY(24px);
+}
+.reveal--scale-up.is-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Variant 6: Pop (Pegas lentur imajinatif untuk badge, chip, ikon) */
+.reveal--pop {
+  transform: scale(0.72);
+  transition-duration: var(--reveal-duration, 650ms);
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.reveal--pop.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Variant 7: Tilt (3D Card entrance dengan rotasi sumbu X) */
+.reveal--tilt {
+  transform: perspective(1000px) rotateX(14deg) translateY(44px);
+}
+.reveal--tilt.is-visible {
+  opacity: 1;
+  transform: perspective(1000px) rotateX(0deg) translateY(0);
+}
+
+/* Variant 8: Flip (3D Card entrance dengan rotasi sumbu Y) */
+.reveal--flip {
+  transform: perspective(1000px) rotateY(-16deg) scale(0.94);
+}
+.reveal--flip.is-visible {
+  opacity: 1;
+  transform: perspective(1000px) rotateY(0deg) scale(1);
+}
+
+/* ===== SCROLL PROGRESS BAR (Indikator scroll neon lime di bawah navbar) ===== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  z-index: 9999;
+  pointer-events: none;
+}
+.scroll-progress__bar {
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, #98a60a, #d9f20e, #ffffff);
+  box-shadow: 0 0 10px rgba(217, 242, 14, 0.75), 0 0 20px rgba(217, 242, 14, 0.4);
+  will-change: transform;
+}
+
+.section-fx { will-change: transform, opacity; }
+
+/* ===== ANIMATED NUMBER (COUNTUP) ===== */
+.count-up {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  will-change: contents;
+}
+.count-up.is-animating {
+  animation: countUpGlow 0.4s ease-out;
+}
+@keyframes countUpGlow {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px rgba(217, 242, 14, 0.9));
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ===== TIMELINE NODE PING ANIMATION ===== */
+.timeline__item.is-visible .timeline__node {
+  animation: nodePop 650ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes nodePop {
+  0% {
+    transform: translateX(-50%) scale(0.5);
+    box-shadow: 0 0 0 0 rgba(217, 242, 14, 0.7);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.3);
+    box-shadow: 0 0 0 12px rgba(217, 242, 14, 0);
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    box-shadow: 0 0 0 0 rgba(217, 242, 14, 0);
+  }
+}
+
+/* ===== INTERACTIVE CARD & BENTO HOVER REFINEMENTS ===== */
+.bento__cell {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease !important;
+}
+.bento__cell:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.45);
+}
+.bento__img {
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.bento__cell:hover .bento__img {
+  transform: scale(1.06) translateY(-4px);
+}
+
+.svc-card {
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.45s ease;
+}
+.svc-card:hover {
+  transform: translateY(-12px) scale(1.025) rotate(-0.6deg);
+  box-shadow: 0 32px 60px rgba(0, 0, 0, 0.4), 0 0 0 3px #0c0c0c;
+}
+.svc-card:nth-child(2):hover { transform: translateY(-12px) scale(1.025) rotate(0.6deg); }
+.svc-card__img {
+  transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: bottom center;
+}
+.svc-card:hover .svc-card__img { transform: scale(1.1) translateY(-6px); }
+.svc-card__art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.45), transparent 65%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.svc-card:hover .svc-card__art::after { opacity: 1; }
+.svc-card__info h3 { transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); transform-origin: left center; }
+.svc-card:hover .svc-card__info h3 { transform: translateX(6px) scale(1.04); }
+.svc-card__tech > * { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.svc-card:hover .svc-card__tech > * { transform: translateY(-4px); }
+.svc-card:hover .svc-card__tech > *:nth-child(2) { transition-delay: 40ms; }
+.svc-card:hover .svc-card__tech > *:nth-child(3) { transition-delay: 80ms; }
+.svc-card:hover .svc-card__tech > *:nth-child(4) { transition-delay: 120ms; }
+
+/* Setelah animasi masuk selesai: lepas delay supaya hover instan & berpegas */
+.reveal.is-done {
+  transition-delay: 0ms !important;
+  transition-duration: 0.45s !important;
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+/* ===== FLOATING & ROTATING DECORATIONS ===== */
+.competitions__sparkle {
+  animation: floatSparkle 4s ease-in-out infinite alternate;
+}
+.competitions__sparkle--tr {
+  animation-duration: 5s;
+  animation-delay: -1.5s;
+}
+@keyframes floatSparkle {
+  0% { transform: translateY(0) rotate(0deg) scale(1); }
+  50% { transform: translateY(-8px) rotate(15deg) scale(1.12); }
+  100% { transform: translateY(4px) rotate(-10deg) scale(0.95); }
+}
+
+.style-section__tagline-burst,
+.bento__visual-star {
+  animation: rotateBurstSlow 22s linear infinite;
+}
+@keyframes rotateBurstSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ===== SKILL TILE HOVER SPRING ===== */
+.skill-tile {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.skill-tile:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(217, 242, 14, 0.45);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* ===== WORK CARD HOVER POLISH ===== */
+.work-card {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+}
+.work-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+}
+.work-card__char {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.work-card:hover .work-card__char {
+  transform: scale(1.04) translateY(-4px);
+}
+.work-card:hover .work-card__burst {
+  animation: rotateBurstSlow 12s linear infinite;
+}
+
+/* Mengizinkan konten tetap tampil jika reduced motion aktif */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal--fade-up,
+  .reveal--fade-down,
+  .reveal--slide-left,
+  .reveal--slide-right,
+  .reveal--scale-up,
+  .reveal--pop,
+  .reveal--tilt,
+  .reveal--flip {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

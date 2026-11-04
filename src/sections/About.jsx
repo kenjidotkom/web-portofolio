@@ -1,5 +1,6 @@
 import { GraduationCap, Download, ArrowUpRight } from 'lucide-react';
 import Reveal from '../components/ui/Reveal';
+import CountUp from '../components/ui/CountUp';
 import Button from '../components/ui/Button';
 import { TechBadge } from '../components/ui/Chip';
 import { about as aboutArt } from '../assets';
@@ -10,7 +11,7 @@ export default function About() {
   return (
     <section id="about" className="section about">
       <div className="container">
-        <Reveal className="about__card card-surface">
+        <Reveal variant="scale-up" className="about__card card-surface">
           <div className="about__photo">
             <img src={aboutArt} alt={`Tentang ${person.name}`} className="about__photo-img" />
           </div>
@@ -34,7 +35,7 @@ export default function About() {
             <dl className="about__stats">
               {a.stats.map((s) => (
                 <div key={s.label}>
-                  <dt>{s.value}</dt>
+                  <dt><CountUp value={s.value} /></dt>
                   <dd>{s.label}</dd>
                 </div>
               ))}
@@ -48,21 +49,21 @@ export default function About() {
         </Reveal>
 
         <div className="skills" id="skills">
-          <Reveal as="h2" className="h-display-xl skills__title">
+          <Reveal as="h2" variant="fade-up" className="h-display-xl skills__title">
             {a.skillsTitleA} <span className="accent-text">{a.skillsTitleHl}</span>
           </Reveal>
           
           <div className="skills__categories">
             {a.skillCategories ? (
               a.skillCategories.map((cat, ci) => (
-                <Reveal key={cat.name} delay={ci * 80} className="skills__group">
+                <Reveal key={cat.name} variant="fade-up" delay={ci * 120} className="skills__group">
                   <div className="skills__group-head">
                     <span className="skills__group-badge">{cat.name}</span>
                     <p className="skills__group-desc">{cat.desc}</p>
                   </div>
                   <ul className="skills__grid">
-                    {cat.skills.map((s) => (
-                      <li key={s.code} className="skill-tile card-surface">
+                    {cat.skills.map((s, si) => (
+                      <li key={s.code} className="skill-tile card-surface" style={{ animationDelay: `${si * 50}ms` }}>
                         <TechBadge code={s.code} size="lg" title={s.name} />
                         <div>
                           <strong>{s.name}</strong>
@@ -76,7 +77,7 @@ export default function About() {
             ) : (
               <ul className="skills__grid">
                 {a.skills.map((s, i) => (
-                  <Reveal as="li" key={s.code} delay={(i % 4) * 60} className="skill-tile card-surface">
+                  <Reveal as="li" key={s.code} variant="pop" delay={(i % 4) * 60} className="skill-tile card-surface">
                     <TechBadge code={s.code} size="lg" title={s.name} />
                     <div>
                       <strong>{s.name}</strong>
