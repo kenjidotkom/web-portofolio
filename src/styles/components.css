@@ -43,6 +43,8 @@
 .chip--soft { background: rgba(255, 255, 255, 0.1); color: #fff; font-weight: 400; }
 .chip--dark { background: #171717; color: #fff; font: 500 var(--fs-body)/20px var(--font-body); padding: 8px 20px; }
 :root[data-theme="light"] .chip--dark { background: rgba(12, 12, 12, 0.08); color: #0c0c0c; }
+:root[data-theme="light"] .chip--outline { border-color: rgba(12, 12, 12, 0.25); color: #0c0c0c; }
+:root[data-theme="light"] .chip--soft { background: rgba(12, 12, 12, 0.08); color: #0c0c0c; }
 
 /* Tech badge */
 .tech { display: inline-flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
@@ -50,6 +52,7 @@
 .tech--lg { width: 56px; height: 56px; border-radius: var(--radius-md); font-size: 18px; }
 .tech--has-brand { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); transition: transform var(--duration-fast); }
 .tech--has-brand:hover { transform: scale(1.08); }
+:root[data-theme="light"] .tech--has-brand { background: rgba(12, 12, 12, 0.06); border: 1px solid rgba(12, 12, 12, 0.15); color: #0c0c0c; }
 
 /* Glass card */
 .card-glass {

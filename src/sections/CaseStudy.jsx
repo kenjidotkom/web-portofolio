@@ -83,7 +83,7 @@ export default function CaseStudy({ slug }) {
 
   if (!c) {
     return (
-      <main className="cs cs--missing" data-surface="ink">
+      <main className="cs cs--missing">
         <div className="container">
           <h1 className="h-display-lg">Proyek tidak ditemukan</h1>
           <Button href="#works" icon={ArrowUpRight}>Kembali ke proyek</Button>
@@ -103,7 +103,7 @@ export default function CaseStudy({ slug }) {
 
   return (
     <>
-      <main className="cs" data-surface="ink">
+      <main className="cs">
         {/* ===== HERO ===== */}
         <header className="cs-hero">
           <div className="container">

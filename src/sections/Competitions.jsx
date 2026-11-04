@@ -1,6 +1,6 @@
-import { ArrowUpRight } from 'lucide-react';
+import { Award, ArrowUpRight } from 'lucide-react';
 import Reveal from '../components/ui/Reveal';
-import { compCovers } from '../assets';
+import { compCovers, certCovers, certPdfs } from '../assets';
 import { Chip } from '../components/ui/Chip';
 import { IconCircle } from '../components/ui/Button';
 import Button from '../components/ui/Button';
@@ -47,17 +47,106 @@ export default function Competitions() {
           ))}
         </ul>
 
-        <Reveal variant="fade-up" className="competitions__cta-wrap">
-          <div className="competitions__cta">
-            <div>
-              <h3>Pencapaian & Sertifikasi Terverifikasi</h3>
-              <p>Lihat arsip lengkap sertifikat kejuaraan nasional, kepanitiaan, dan lisensi industri.</p>
-            </div>
-            <Button href="#certifications" variant="primary" icon={ArrowUpRight}>
-              Lihat Seluruh Sertifikat ({c.certs?.length || 2}+)
-            </Button>
-          </div>
+        {/* Header Sertifikasi & Prestasi */}
+        <Reveal as="h2" variant="fade-up" className="h-display-lg competitions__certs-title">
+          {c.certsTitleA} <span className="accent-text">{c.certsTitleHl}</span>
         </Reveal>
+
+        {/* 2 Kartu Sertifikat Utama (Tampilan Asli) */}
+        <ul className="competitions__certs">
+          {c.certs.map((cert, i) => {
+            const coverImg = certCovers[cert.id];
+            const pdfUrl = certPdfs[cert.id];
+            return (
+              <Reveal as="li" key={cert.title} variant="scale-up" delay={i * 120} className="card-glass cert-card">
+                <a
+                  href={pdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cert-card__img"
+                  title={`Lihat sertifikat ${cert.title}`}
+                >
+                  {coverImg ? (
+                    <img
+                      src={coverImg}
+                      alt={`Dokumentasi ${cert.title}`}
+                      className={`cert-card__photo cert-card__photo--${cert.id}`}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="cert-card__placeholder">
+                      <Award size={32} aria-hidden="true" />
+                      <span>Gambar sertifikat</span>
+                    </div>
+                  )}
+                  <span className="cert-card__zoom-hint" aria-hidden="true">
+                    <ArrowUpRight size={18} />
+                  </span>
+                </a>
+                <div className="cert-card__body">
+                  <Chip variant="lime">{cert.kind}</Chip>
+                  <h3>{cert.title}</h3>
+                  <p className="cert-card__org">{cert.org}</p>
+                  <p className="cert-card__proj">Proyek: {cert.project}</p>
+                  <Button
+                    href={pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="outline"
+                    icon={ArrowUpRight}
+                    className="cert-card__btn"
+                  >
+                    Lihat sertifikat
+                  </Button>
+                </div>
+              </Reveal>
+            );
+          })}
+        </ul>
+
+        {/* Section Div-Div Kecil untuk Sertifikat & Pengalaman Lainnya */}
+        {c.miniCerts && c.miniCerts.length > 0 && (
+          <Reveal variant="fade-up" className="competitions__mini-certs-wrap">
+            <div className="competitions__mini-certs-head">
+              <span className="competitions__mini-label">Sertifikat & Pengalaman Lainnya</span>
+              <a
+                href={c.driveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="competitions__drive-pill"
+              >
+                <span>Buka Google Drive Lengkap</span>
+                <ArrowUpRight size={14} />
+              </a>
+            </div>
+
+            <div className="competitions__mini-grid">
+              {c.miniCerts.map((mc) => (
+                <a
+                  key={mc.title}
+                  href={c.driveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="competitions__mini-item"
+                  title={`Buka berkas ${mc.title} di Google Drive`}
+                >
+                  <div className="competitions__mini-icon">
+                    <Award size={18} />
+                  </div>
+                  <div className="competitions__mini-body">
+                    <div className="competitions__mini-top">
+                      <span className="competitions__mini-badge">{mc.badge}</span>
+                      <span className="competitions__mini-year">{mc.year}</span>
+                    </div>
+                    <h4 className="competitions__mini-title">{mc.title}</h4>
+                    <p className="competitions__mini-org">{mc.org}</p>
+                  </div>
+                  <ArrowUpRight size={15} className="competitions__mini-arrow" />
+                </a>
+              ))}
+            </div>
+          </Reveal>
+        )}
       </div>
     </section>
   );
