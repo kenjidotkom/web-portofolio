@@ -65,12 +65,11 @@ export default function Works() {
             <article key={w.id} className="work-card" style={{ background: w.color, cursor: 'pointer' }}
               aria-label={`${i + 1} dari ${list.length}: ${w.title}`}
               onClick={() => { window.location.hash = caseHref(w.slug); }}>
-              <Starburst size={176} color={w.burst} className="work-card__burst" />
-              <img src={workCovers[w.slug]} alt="" className="work-card__char" loading="lazy" />
+              <img src={workCovers[w.slug]} alt={w.title} className="work-card__char" loading="lazy" />
               {w.award && <Chip variant="lime" className="work-card__award">{w.award}</Chip>}
               <div className="work-card__shade" />
               <h3 className="work-card__title">{w.title}</h3>
-              <IconCircle tone="white" size={48} href={caseHref(w.slug)} label={`Buka studi kasus ${w.title}`} className="work-card__go" onClick={(e) => e.stopPropagation()} />
+              <IconCircle tone="white" size={44} href={caseHref(w.slug)} label={`Buka studi kasus ${w.title}`} className="work-card__go" onClick={(e) => e.stopPropagation()} />
             </article>
           ))}
         </div>

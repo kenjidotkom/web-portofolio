@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import {
-  ArrowLeft, ArrowUpRight, Check, Quote, Target, Search, Lightbulb, Layers,
-  Image as ImageIcon, Flag, TrendingUp, MessageCircle, Users, Clock, Monitor, Briefcase,
+  ArrowLeft, ArrowRight, ArrowUpRight, ArrowDown, Check, Target,
+  Image as ImageIcon, Sparkles,
 } from 'lucide-react';
 import Reveal from '../components/ui/Reveal';
 import Button from '../components/ui/Button';
-import { Chip, TechBadge } from '../components/ui/Chip';
+import { Chip } from '../components/ui/Chip';
 import { Starburst, Sparkle } from '../components/ui/Decor';
-import { workCovers, compCovers } from '../assets';
-import { getCase, otherCases } from '../data/caseStudies';
+import { workCovers, compCovers, charCovers } from '../assets';
+import { getCase, getAdjacentCases, otherCases } from '../data/caseStudies';
 import { person } from '../data/portfolioData';
 import { caseHref } from '../hooks/useHashRoute';
 import Footer from './Footer';
@@ -17,12 +17,11 @@ import './CaseStudy.css';
 const covers = { ...workCovers, ...compCovers };
 
 const NAV = [
-  { id: 'konteks', label: 'Konteks proyek' },
-  { id: 'problem', label: 'Problem statement' },
-  { id: 'riset', label: 'Riset & insight' },
-  { id: 'solusi', label: 'Solusi & proses' },
-  { id: 'deliverables', label: 'Deliverables' },
-  { id: 'impact', label: 'Challenge & impact' },
+  { id: 'konteks', num: '01', label: 'Konteks proyek' },
+  { id: 'problem', num: '02', label: 'Problem statement' },
+  { id: 'solusi', num: '03', label: 'Solusi & proses' },
+  { id: 'deliverables', num: '04', label: 'Deliverables' },
+  { id: 'impact', num: '05', label: 'Challenges & impact' },
 ];
 
 function useActiveSection(ids) {
@@ -53,11 +52,12 @@ function useActiveSection(ids) {
 
 const goTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-function SectionTitle({ icon: Icon, children }) {
+function SectionHead({ num, title, subtitle }) {
   return (
-    <Reveal as="h2" className="cs-title">
-      <span className="cs-title__icon"><Icon size={20} aria-hidden="true" /></span>
-      {children}
+    <Reveal className="cs-sec-head">
+      <span className="cs-sec-head__badge">{num}</span>
+      <h2 className="cs-title">{title}</h2>
+      {subtitle && <p className="cs-sec-head__sub">{subtitle}</p>}
     </Reveal>
   );
 }
@@ -66,7 +66,23 @@ function CheckList({ items }) {
   return (
     <ul className="cs-check">
       {items.map((t) => (
-        <li key={t}><span className="cs-check__dot"><Check size={12} strokeWidth={3} /></span><span>{t}</span></li>
+        <li key={t}>
+          <span className="cs-check__dot"><Check size={11} strokeWidth={3} /></span>
+          <span>{t}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function PainList({ items }) {
+  return (
+    <ul className="cs-check cs-check--pain">
+      {items.map((t) => (
+        <li key={t}>
+          <span className="cs-check__pain-dot" aria-hidden="true" />
+          <span>{t}</span>
+        </li>
       ))}
     </ul>
   );
@@ -93,13 +109,32 @@ export default function CaseStudy({ slug }) {
   }
 
   const back = c.category === 'Lomba' ? '#competitions' : '#works';
-  const others = otherCases(c.slug, 4);
+  const { prev, next } = getAdjacentCases(c.slug);
+  const others = otherCases(c.slug, 3);
   const metaItems = [
-    { icon: Briefcase, k: 'Peran', v: c.meta.role },
-    { icon: Clock, k: 'Durasi', v: c.meta.duration },
-    { icon: Users, k: 'Tim', v: c.meta.team },
-    { icon: Monitor, k: 'Platform', v: c.meta.platform },
+    { k: 'Peran', v: c.meta.role },
+    { k: 'Konteks', v: c.meta.contextLabel || c.badge },
+    { k: 'Tahun', v: c.year },
   ];
+
+  const methodPills = c.meta.methodPills || ['Figma', 'UI/UX Design', 'Prototyping', 'Design Thinking'];
+  const dtSteps = c.designThinking || [
+    { n: '1', step: 'Empathize', color: '#d9f20e', desc: 'Memahami kebutuhan, kebiasaan, dan kendala utama pengguna.' },
+    { n: '2', step: 'Define', color: '#f7a8b8', desc: 'Merumuskan problem statement dan menyusun prioritas solusi.' },
+    { n: '3', step: 'Ideate', color: '#aeb5f7', desc: 'Mengeksplorasi solusi, user flow, dan arsitektur informasi.' },
+    { n: '4', step: 'Prototype', color: '#ff5a36', desc: 'Merancang wireframe, design system, dan antarmuka high-fidelity.' },
+    { n: '5', step: 'Test', color: '#98a60a', desc: 'Menguji keterbacaan serta alur interaksi bersama pengguna.' },
+  ];
+
+  const processDelivs = c.deliverablesProcess || c.deliverables?.slice(0, 4) || [];
+  const finalDelivs = c.deliverablesFinal || [
+    { title: 'Design System', caption: 'Komponen antarmuka, tipografi, dan sistem visual yang konsisten.' },
+    { title: `UI Final — ${c.title}`, caption: 'Tampilan antarmuka akhir dengan alur utama produk.', isFeatured: true },
+    { title: 'Prototype Interaktif', caption: 'Simulasi alur layar yang siap diuji dan didemokan.' },
+  ];
+
+  const solutionFeatures = c.solution.features || c.solution.decisions?.map((d) => `${d.title} — ${d.why}`) || [];
+  const impactHighlights = c.impact.highlights || c.impact.metrics?.map((m) => `${m.value} ${m.label}`) || [];
 
   return (
     <>
@@ -107,11 +142,12 @@ export default function CaseStudy({ slug }) {
         {/* ===== HERO ===== */}
         <header className="cs-hero">
           <div className="container">
-            <a href={back} className="cs-back"><ArrowLeft size={16} aria-hidden="true" /> Semua {c.category === 'Lomba' ? 'lomba' : 'proyek'}</a>
+            <a href={back} className="cs-back">
+              <ArrowLeft size={15} aria-hidden="true" /> Kembali ke beranda
+            </a>
 
             <div className="cs-hero__chips">
               <Chip variant="lime">{c.kind}</Chip>
-              <Chip variant="outline">{c.year}</Chip>
               <Chip variant="outline">{c.badge}</Chip>
             </div>
 
@@ -119,24 +155,32 @@ export default function CaseStudy({ slug }) {
             <p className="cs-hero__tagline">{c.tagline}</p>
 
             <ul className="cs-meta">
-              {metaItems.map(({ icon: Icon, k, v }) => (
+              {metaItems.map(({ k, v }) => (
                 <li key={k}>
-                  <Icon size={18} aria-hidden="true" />
-                  <div><span>{k}</span><strong>{v}</strong></div>
+                  <span>{k}</span>
+                  <strong>{v}</strong>
                 </li>
               ))}
             </ul>
 
-            <div className="cs-tools" aria-label="Tools yang dipakai">
-              <span>Tools</span>
-              {c.meta.tools.map((t) => <TechBadge key={t} code={t} />)}
+            <div className="cs-cover" style={{ '--cover-frame': c.color }}>
+              <Starburst size={92} color={c.burst || '#4a3219'} className="cs-cover__burst" />
+              <img src={covers[c.slug]} alt={`Mockup proyek ${c.title}`} className="cs-cover__char" />
             </div>
 
-            <div className="cs-cover" style={{ background: c.color }}>
-              <Starburst size={260} color={c.burst} className="cs-cover__burst" />
-              <Sparkle size={56} color="#0c0c0c" className="cs-cover__spark" />
-              <img src={covers[c.slug]} alt={`Ilustrasi proyek ${c.title}`} className="cs-cover__char" />
-              <span className="cs-cover__label">{c.title}</span>
+            <div className="cs-quicklinks" aria-label="Pintasan proyek">
+              <button type="button" className="cs-quicklink" onClick={() => goTo('ui-final')}>
+                <span>Figma prototype</span>
+                <ArrowUpRight size={14} aria-hidden="true" />
+              </button>
+              <button type="button" className="cs-quicklink" onClick={() => goTo('konteks')}>
+                <span>Dokumentasi</span>
+                <ArrowUpRight size={14} aria-hidden="true" />
+              </button>
+              <button type="button" className="cs-quicklink" onClick={() => goTo('deliverables')}>
+                <span>Pratinjau layar</span>
+                <ArrowDown size={14} aria-hidden="true" />
+              </button>
             </div>
           </div>
         </header>
@@ -144,13 +188,18 @@ export default function CaseStudy({ slug }) {
         {/* ===== BODY ===== */}
         <div className="container cs-layout">
           <aside className="cs-side" aria-label="Daftar isi">
-            <p className="cs-side__label">Daftar isi</p>
+            <p className="cs-side__label">Bagian</p>
             <ul>
               {NAV.map((n) => (
                 <li key={n.id}>
-                  <button type="button" data-nav-id={n.id} className={`cs-side__link ${active === n.id ? 'is-active' : ''}`}
-                    onClick={() => goTo(n.id)} aria-current={active === n.id ? 'true' : undefined}>
-                    {n.label}
+                  <button
+                    type="button"
+                    data-nav-id={n.id}
+                    className={`cs-side__link ${active === n.id ? 'is-active' : ''}`}
+                    onClick={() => goTo(n.id)}
+                    aria-current={active === n.id ? 'true' : undefined}
+                  >
+                    <span className="cs-side__link-text">{n.label}</span>
                   </button>
                 </li>
               ))}
@@ -158,216 +207,336 @@ export default function CaseStudy({ slug }) {
           </aside>
 
           <div className="cs-content">
-            {/* --- Konteks --- */}
+            {/* --- 01. Konteks proyek --- */}
             <section id="konteks" className="cs-section">
-              <SectionTitle icon={Flag}>Konteks proyek</SectionTitle>
+              <SectionHead
+                num="01"
+                title="Konteks proyek"
+                subtitle="Latar belakang proyek, sasaran utama, serta peran yang kukerjakan."
+              />
               <Reveal as="p" className="cs-lead">{c.context.summary}</Reveal>
-              <Reveal className="cs-facts">
-                {c.context.facts.map((f) => (
-                  <div key={f.k}><span>{f.k}</span><strong>{f.v}</strong></div>
-                ))}
-              </Reveal>
+
               <div className="cs-grid-2">
                 <Reveal className="cs-card">
-                  <h3>Tujuan proyek</h3>
+                  <h3>Sasaran utama</h3>
                   <CheckList items={c.context.goals} />
                 </Reveal>
-                <Reveal className="cs-card" delay={80}>
-                  <h3>Ruang lingkup pekerjaanku</h3>
+                <Reveal className="cs-card" delay={70}>
+                  <h3>Peran & kontribusi</h3>
                   <CheckList items={c.context.scope} />
                 </Reveal>
               </div>
+
+              <Reveal className="cs-card cs-method-card" delay={100}>
+                <h3>Tools & metode yang dipakai</h3>
+                <div className="cs-method-pills">
+                  {methodPills.map((pill) => (
+                    <span key={pill} className="cs-method-pill">{pill}</span>
+                  ))}
+                </div>
+              </Reveal>
             </section>
 
-            {/* --- Problem --- */}
+            {/* --- 02. Problem statement --- */}
             <section id="problem" className="cs-section">
-              <SectionTitle icon={Target}>Problem statement</SectionTitle>
+              <SectionHead
+                num="02"
+                title="Problem statement"
+                subtitle="Masalah utama pengguna dan tantangan desain yang ingin diselesaikan."
+              />
               <Reveal as="figure" className="cs-quote">
-                <Quote size={40} aria-hidden="true" />
+                <Target size={110} className="cs-quote__watermark" aria-hidden="true" />
+                <span className="cs-quote__eyebrow">Masalah utama pengguna</span>
                 <blockquote>“{c.problem.quote}”</blockquote>
-                <figcaption>Suara pengguna</figcaption>
               </Reveal>
+
               <div className="cs-grid-2">
                 <Reveal className="cs-card">
-                  <h3>{c.problem.user.title}</h3>
-                  <CheckList items={c.problem.user.points} />
+                  <h3>Mengapa masalah ini penting</h3>
+                  {c.problem.whyItMatters ? (
+                    <p className="cs-card__para">{c.problem.whyItMatters}</p>
+                  ) : (
+                    <CheckList items={c.problem.user.points} />
+                  )}
                 </Reveal>
-                <Reveal className="cs-card" delay={80}>
-                  <h3>{c.problem.business.title}</h3>
-                  <CheckList items={c.problem.business.points} />
+                <Reveal className="cs-card" delay={70}>
+                  <h3>Target pengguna & konteks</h3>
+                  {c.problem.targetContext ? (
+                    <p className="cs-card__para">{c.problem.targetContext}</p>
+                  ) : (
+                    <CheckList items={c.problem.business.points} />
+                  )}
                 </Reveal>
-              </div>
-              <Reveal className="cs-hmw">
-                <span>How might we</span>
-                <p>{c.problem.hmw}</p>
-              </Reveal>
-            </section>
-
-            {/* --- Riset --- */}
-            <section id="riset" className="cs-section">
-              <SectionTitle icon={Search}>Riset & insight</SectionTitle>
-              <h3 className="cs-sub">Metode yang dipakai</h3>
-              <div className="cs-grid-3">
-                {c.research.methods.map((m, i) => (
-                  <Reveal key={m.title} className="cs-card cs-card--tight" delay={i * 70}>
-                    <span className="cs-num">{String(i + 1).padStart(2, '0')}</span>
-                    <h4>{m.title}</h4>
-                    <p>{m.desc}</p>
-                  </Reveal>
-                ))}
-              </div>
-              <h3 className="cs-sub">Insight kunci</h3>
-              <div className="cs-grid-3">
-                {c.research.insights.map((m, i) => (
-                  <Reveal key={m.title} className="cs-card cs-card--lime" delay={i * 70}>
-                    <Lightbulb size={22} aria-hidden="true" />
-                    <h4>{m.title}</h4>
-                    <p>{m.desc}</p>
-                  </Reveal>
-                ))}
               </div>
             </section>
 
-            {/* --- Solusi --- */}
+            {/* --- 03. Solusi & proses berpikir --- */}
             <section id="solusi" className="cs-section">
-              <SectionTitle icon={Layers}>Solusi & proses berpikir</SectionTitle>
-              <h3 className="cs-sub">Prinsip desain</h3>
-              <div className="cs-grid-3">
-                {c.solution.principles.map((p, i) => (
-                  <Reveal key={p.title} className="cs-card" delay={i * 70}>
-                    <h4>{p.title}</h4>
-                    <p>{p.desc}</p>
+              <SectionHead
+                num="03"
+                title="Solusi & proses berpikir"
+                subtitle="Pendekatan Design Thinking untuk merancang solusi yang tepat sasaran."
+              />
+
+              <div className="cs-dt-grid">
+                {dtSteps.map((dt, i) => (
+                  <Reveal key={dt.step} className="cs-dt-card" delay={i * 55}>
+                    <span className="cs-dt-card__badge" style={{ background: dt.color }}>
+                      {dt.n}
+                    </span>
+                    <div className="cs-dt-card__body">
+                      <h4>{dt.step}</h4>
+                      <p>{dt.desc}</p>
+                    </div>
                   </Reveal>
                 ))}
               </div>
 
-              <h3 className="cs-sub">Alur proses</h3>
-              <ol className="cs-steps">
-                {c.solution.process.map((s, i) => (
-                  <Reveal as="li" key={s.title} delay={i * 70}>
-                    <span className="cs-steps__n">{i + 1}</span>
-                    <div><h4>{s.title}</h4><p>{s.desc}</p></div>
-                  </Reveal>
-                ))}
-              </ol>
+              <h3 className="cs-sub">Riset & persona</h3>
+              <div className="cs-grid-2">
+                <Reveal className="cs-card">
+                  <h3>Kebutuhan</h3>
+                  <CheckList items={c.solution.persona.goals} />
+                </Reveal>
+                <Reveal className="cs-card" delay={70}>
+                  <h3>Pain points</h3>
+                  <PainList items={c.solution.persona.pains} />
+                </Reveal>
+              </div>
 
-              <h3 className="cs-sub">Keputusan desain & alasannya</h3>
-              <Reveal className="cs-table" role="table" aria-label="Keputusan desain">
-                <div className="cs-table__head" role="row"><span role="columnheader">Keputusan</span><span role="columnheader">Mengapa</span></div>
-                {c.solution.decisions.map((d) => (
-                  <div className="cs-table__row" role="row" key={d.title}>
-                    <strong role="cell">{d.title}</strong><p role="cell">{d.why}</p>
-                  </div>
-                ))}
-              </Reveal>
-
-              <h3 className="cs-sub">Persona</h3>
               <Reveal className="cs-persona">
-                <div className="cs-persona__img" style={{ background: c.color }}>
-                  <img src={covers[c.slug]} alt="" loading="lazy" />
+                <div className="cs-persona__img">
+                  <img src={charCovers[c.slug] || covers[c.slug]} alt={c.solution.persona.name} loading="lazy" />
                 </div>
                 <div className="cs-persona__body">
+                  <span className="cs-persona__eyebrow">User Persona</span>
                   <h4>{c.solution.persona.name}</h4>
                   <p className="cs-persona__role">{c.solution.persona.role}</p>
-                  <div className="cs-grid-2 cs-grid-2--inner">
-                    <div><h5>Tujuan</h5><CheckList items={c.solution.persona.goals} /></div>
-                    <div><h5>Kendala</h5><CheckList items={c.solution.persona.pains} /></div>
+
+                  <div className="cs-persona__facts">
+                    <div>
+                      <span>Usia</span>
+                      <strong>{c.solution.persona.age || '19–25 thn'}</strong>
+                    </div>
+                    <div>
+                      <span>Peran</span>
+                      <strong>{c.solution.persona.occupation || 'Pengguna Aktif'}</strong>
+                    </div>
+                    <div>
+                      <span>Lokasi / Konteks</span>
+                      <strong>{c.solution.persona.location || c.meta.platform}</strong>
+                    </div>
                   </div>
+
+                  <div className="cs-persona__quote">
+                    <span className="cs-persona__quote-icon" aria-hidden="true">
+                      <Sparkle size={11} color="#0c0c0c" />
+                    </span>
+                    <p>“{c.solution.persona.quote || c.problem.hmw}”</p>
+                  </div>
+                </div>
+              </Reveal>
+
+              <Reveal className="cs-card cs-solutions-card">
+                <h3>Solusi desain</h3>
+                <ul className="cs-solutions-grid">
+                  {solutionFeatures.map((feat) => (
+                    <li key={feat}>
+                      <Sparkles size={14} className="cs-solutions-grid__icon" aria-hidden="true" />
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            </section>
+
+            {/* --- 04. Deliverables --- */}
+            <section id="deliverables" className="cs-section">
+              <SectionHead
+                num="04"
+                title="Deliverables"
+                subtitle="Artefak yang dihasilkan sepanjang proyek, dari tahap eksplorasi hingga tampilan akhir."
+              />
+
+              <h3 className="cs-deliv-group">
+                <Sparkle size={14} color="#d9f20e" />
+                <span>Proses desain</span>
+              </h3>
+              <div className="cs-grid-2">
+                {processDelivs.map((d, i) => (
+                  <Reveal as="figure" key={d.title} className="cs-deliv" delay={(i % 2) * 60}>
+                    <div className="cs-deliv__frame cs-deliv__frame--placeholder">
+                      <div className="cs-deliv__ph">
+                        <ImageIcon size={22} aria-hidden="true" />
+                        <span>Artefak {d.title}</span>
+                      </div>
+                    </div>
+                    <figcaption>
+                      <strong>{d.title}</strong>
+                      <span>{d.caption}</span>
+                    </figcaption>
+                  </Reveal>
+                ))}
+              </div>
+
+              <h3 className="cs-deliv-group">
+                <Sparkle size={14} color="#d9f20e" />
+                <span>Hasil akhir</span>
+              </h3>
+              <div className="cs-final-stack">
+                {finalDelivs.map((d) => {
+                  if (d.isFeatured) {
+                    return (
+                      <Reveal as="figure" key={d.title} id="ui-final" className="cs-deliv cs-deliv--featured">
+                        <div className="cs-deliv__frame cs-deliv__frame--featured">
+                          <img src={covers[c.slug]} alt={d.title} loading="lazy" />
+                        </div>
+                        <figcaption>
+                          <strong>{d.title}</strong>
+                          <span>{d.caption}</span>
+                        </figcaption>
+                      </Reveal>
+                    );
+                  }
+                  return (
+                    <Reveal as="figure" key={d.title} className="cs-deliv cs-deliv--half">
+                      <div className="cs-deliv__frame cs-deliv__frame--placeholder">
+                        <div className="cs-deliv__ph">
+                          <ImageIcon size={22} aria-hidden="true" />
+                          <span>Pratinjau {d.title}</span>
+                        </div>
+                      </div>
+                      <figcaption>
+                        <strong>{d.title}</strong>
+                        <span>{d.caption}</span>
+                      </figcaption>
+                    </Reveal>
+                  );
+                })}
+              </div>
+
+              <Reveal className="cs-card cs-palette-card">
+                <h3>Palet warna</h3>
+                <div className="cs-palette">
+                  {c.palette.map((p) => (
+                    <div key={p.hex} className="cs-swatch">
+                      <span className="cs-swatch__bar" style={{ background: p.hex }} />
+                      <code>{p.hex}</code>
+                      <small>{p.name}</small>
+                    </div>
+                  ))}
                 </div>
               </Reveal>
             </section>
 
-            {/* --- Deliverables --- */}
-            <section id="deliverables" className="cs-section">
-              <SectionTitle icon={ImageIcon}>Deliverables</SectionTitle>
-              <Reveal as="p" className="cs-lead">Artefak yang dihasilkan sepanjang proyek, dari riset hingga hasil akhir.</Reveal>
-              <div className="cs-grid-2">
-                {c.deliverables.map((d, i) => (
-                  <Reveal as="figure" key={d.title} className="cs-deliv" delay={(i % 2) * 70}>
-                    <div className="cs-deliv__frame">
-                      {d.img
-                        ? <img src={d.img} alt={d.title} loading="lazy" />
-                        : (<div className="cs-deliv__ph"><ImageIcon size={28} aria-hidden="true" /><span>Gambar {d.title}</span></div>)}
-                    </div>
-                    <figcaption><strong>{d.title}</strong><span>{d.caption}</span></figcaption>
-                  </Reveal>
-                ))}
-              </div>
-
-              <h3 className="cs-sub">Palet warna</h3>
-              <Reveal className="cs-palette">
-                {c.palette.map((p) => (
-                  <div key={p.hex} className="cs-swatch">
-                    <span style={{ background: p.hex }} />
-                    <strong>{p.name}</strong>
-                    <code>{p.hex}</code>
-                  </div>
-                ))}
-              </Reveal>
-
-              <h3 className="cs-sub">Tipografi</h3>
-              <Reveal className="cs-type">
-                <div><span>Display</span><p style={{ fontFamily: `"${c.type.display}", cursive` }}>{c.type.display}</p><small>Aa Bb Cc 123</small></div>
-                <div><span>Body</span><p style={{ fontFamily: `"${c.type.body}", sans-serif` }}>{c.type.body}</p><small>Aa Bb Cc 123</small></div>
-              </Reveal>
-            </section>
-
-            {/* --- Challenge & impact --- */}
+            {/* --- 05. Challenges & impact --- */}
             <section id="impact" className="cs-section">
-              <SectionTitle icon={TrendingUp}>Challenge & impact</SectionTitle>
-              <h3 className="cs-sub">Tantangan & cara menghadapinya</h3>
-              <div className="cs-challenges">
-                {c.challenges.map((ch, i) => (
-                  <Reveal key={ch.title} className="cs-card" delay={i * 70}>
+              <SectionHead
+                num="05"
+                title="Challenges & impact"
+                subtitle="Tantangan utama selama pengerjaan serta dampak dari solusi yang dirancang."
+              />
+
+              <div className="cs-grid-2">
+                {c.challenges.slice(0, 2).map((ch, i) => (
+                  <Reveal key={ch.title} className="cs-card cs-challenge-card" delay={i * 70}>
+                    <span className="cs-challenge-card__num">{String(i + 1).padStart(2, '0')}</span>
                     <h4>{ch.title}</h4>
-                    <p><span className="cs-tag cs-tag--bad">Masalah</span>{ch.problem}</p>
-                    <p><span className="cs-tag cs-tag--good">Tindakan</span>{ch.action}</p>
+                    <p>{ch.problem} {ch.action}</p>
                   </Reveal>
                 ))}
               </div>
 
-              <Reveal className="cs-impact" style={{ background: c.color }}>
-                <Starburst size={180} color={c.burst} className="cs-impact__burst" />
+              <Reveal className="cs-impact-banner">
+                <div className="cs-impact-banner__top">
+                  <span className="cs-impact-banner__eyebrow">Hasil & Dampak</span>
+                  <Sparkle size={18} color="#d9f20e" />
+                </div>
                 <h3>{c.impact.headline}</h3>
-                <ul>
-                  {c.impact.metrics.map((m) => (
-                    <li key={m.label}><strong>{m.value}</strong><span>{m.label}</span></li>
+                <ul className="cs-impact-banner__list">
+                  {impactHighlights.map((item) => (
+                    <li key={item}>
+                      <span className="cs-check__dot"><Check size={11} strokeWidth={3} /></span>
+                      <span>{item}</span>
+                    </li>
                   ))}
                 </ul>
               </Reveal>
 
-              <h3 className="cs-sub">Refleksi</h3>
-              <Reveal className="cs-card">
-                <CheckList items={c.impact.reflections} />
+              <Reveal className="cs-card cs-takeaways-card">
+                <h3>Apa yang kupelajari</h3>
+                <ul className="cs-takeaways-grid">
+                  {c.impact.reflections.map((ref) => (
+                    <li key={ref}>{ref}</li>
+                  ))}
+                </ul>
               </Reveal>
             </section>
           </div>
         </div>
 
+        {/* ===== PREV / NEXT NAVIGATION ===== */}
+        <div className="container">
+          <nav className="cs-prevnext" aria-label="Navigasi proyek sebelum dan selanjutnya">
+            {prev && (
+              <a href={caseHref(prev.slug)} className="cs-prevnext__card cs-prevnext__card--prev">
+                <span className="cs-prevnext__icon"><ArrowLeft size={16} aria-hidden="true" /></span>
+                <div className="cs-prevnext__meta">
+                  <span>Sebelumnya</span>
+                  <strong>{prev.title}</strong>
+                </div>
+              </a>
+            )}
+            {next && (
+              <a href={caseHref(next.slug)} className="cs-prevnext__card cs-prevnext__card--next">
+                <div className="cs-prevnext__meta">
+                  <span>Selanjutnya</span>
+                  <strong>{next.title}</strong>
+                </div>
+                <span className="cs-prevnext__icon"><ArrowRight size={16} aria-hidden="true" /></span>
+              </a>
+            )}
+          </nav>
+        </div>
+
         {/* ===== PROYEK LAINNYA ===== */}
         <section className="cs-others">
           <div className="container">
-            <Reveal as="h2" className="h-display-lg">Proyek <span className="accent-text">lainnya</span></Reveal>
+            <Reveal as="h2" className="cs-others__heading">
+              Proyek <span className="accent-text">lainnya</span>
+            </Reveal>
+
             <ul className="cs-others__grid">
               {others.map((o, i) => (
                 <Reveal as="li" key={o.slug} delay={i * 70}>
-                  <a href={caseHref(o.slug)} className="cs-other" style={{ background: o.color }}>
-                    <Starburst size={120} color={o.burst} className="cs-other__burst" />
-                    <img src={covers[o.slug]} alt="" loading="lazy" />
-                    <span className="cs-other__title">{o.title}</span>
-                    <span className="cs-other__go"><ArrowUpRight size={18} aria-hidden="true" /></span>
+                  <a href={caseHref(o.slug)} className="cs-other-card">
+                    <div className="cs-other-card__media" style={{ '--other-bg': o.color }}>
+                      <img src={covers[o.slug]} alt={o.title} loading="lazy" />
+                    </div>
+                    <div className="cs-other-card__body">
+                      <div className="cs-other-card__title-row">
+                        <h3>{o.title}</h3>
+                        <ArrowUpRight size={16} aria-hidden="true" />
+                      </div>
+                      <p>{o.tagline}</p>
+                    </div>
                   </a>
                 </Reveal>
               ))}
             </ul>
 
             <Reveal className="cs-cta">
-              <Sparkle size={36} color="#0c0c0c" className="cs-cta__spark" />
-              <h2>Suka dengan cara berpikirku? <span>Yuk, ngobrol!</span></h2>
-              <div className="cs-cta__actions">
-                <Button href={person.whatsapp} target="_blank" rel="noopener noreferrer" icon={MessageCircle}>Hubungi aku</Button>
-                <Button href={back} variant="outline" icon={ArrowUpRight}>Lihat karya lain</Button>
+              <div className="cs-cta__content">
+                <h2>
+                  Suka dengan cara kerjaku? <span>Yuk, ngobrol!</span>
+                </h2>
+                <div className="cs-cta__actions">
+                  <Button href={person.whatsapp} target="_blank" rel="noopener noreferrer" icon={ArrowUpRight}>
+                    Hubungi aku
+                  </Button>
+                </div>
               </div>
+              <Starburst size={112} color="#d9f20e" className="cs-cta__burst" />
             </Reveal>
           </div>
         </section>
@@ -376,4 +545,3 @@ export default function CaseStudy({ slug }) {
     </>
   );
 }
-

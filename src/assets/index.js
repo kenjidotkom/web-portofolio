@@ -9,19 +9,36 @@ import caraDesain2 from './cara desain 2.svg';
 import caraDesain3 from './cara desain 3.svg';
 import caraDesain4 from './cara desain 4.svg';
 
-import speedlustGarage from './speedlust-garage.svg';
-import rieCharge from './rie-charge.svg';
-import polyBoardGames from './poly-board-games.svg';
-import visensa from './visensa.svg';
-import akseskota from './akseskota.svg';
-import projectPkl from './project-pkl.svg';
+import speedlustGarageChar from './speedlust-garage.svg';
+import rieChargeChar from './rie-charge.svg';
+import polyBoardGamesChar from './poly-board-games.svg';
+import visensaChar from './visensa.svg';
+import akseskotaChar from './akseskota.svg';
+import projectPklChar from './project-pkl.svg';
 
-import brainspace from './brainspace.svg';
-import elderlink from './elderlink.svg';
-import bansoskita from './bansoskita.svg';
-import aurora from './aurora.svg';
-import agrosupply from './agrosupply.svg';
-import apollo from './apollo.svg';
+import brainspaceChar from './brainspace.svg';
+import elderlinkChar from './elderlink.svg';
+import bansoskitaChar from './bansoskita.svg';
+import auroraChar from './aurora.svg';
+import agrosupplyChar from './agrosupply.svg';
+import apolloChar from './apollo.svg';
+
+// Cover project dari folder `./cover project/`
+import coverSpeedlustGarage from './cover project/Speedlust Garage.png';
+import coverRieCharge from './cover project/Rie.Charge.png';
+import coverPolyBoardGames from './cover project/Poly Board Games.png';
+import coverVisensa from './cover project/visensa.png';
+import coverAksesKota from './cover project/AksesKota.png';
+import coverPkl from './cover project/PKL.png';
+import coverAksaraLensa from './cover project/AksaraLensa.png';
+import coverNaik from './cover project/NAIK.png';
+
+import coverBrainspace from './cover project/Brainspace.png';
+import coverElderLink from './cover project/ElderLink.png';
+import coverBansosKita from './cover project/BansosKita.png';
+import coverAurora from './cover project/AURORA.png';
+import coverAgroSupply from './cover project/AgroSupply.png';
+import coverApollo from './cover project/APOLLO.png';
 
 import uiuxDesign from './uiux design.svg';
 import frontEnd from './front-end.svg';
@@ -45,23 +62,43 @@ export const certPdfs = {
   'harapan-1': pdfWebDev,
 };
 
-/** Karakter cover proyek, dikunci dengan `slug` di portfolioData.js */
+/** Cover proyek utama dari folder `src/assets/cover project/`, dikunci dengan `slug` di portfolioData.js */
 export const workCovers = {
-  'speedlust-garage': speedlustGarage,
-  'rie-charge': rieCharge,
-  'poly-board-games': polyBoardGames,
-  visensa,
-  akseskota,
-  'project-pkl': projectPkl,
+  'speedlust-garage': coverSpeedlustGarage,
+  'rie-charge': coverRieCharge,
+  'poly-board-games': coverPolyBoardGames,
+  visensa: coverVisensa,
+  akseskota: coverAksesKota,
+  'project-pkl': coverPkl,
+  aksaralensa: coverAksaraLensa,
+  naik: coverNaik,
 };
 
-/** Ilustrasi kartu kompetisi, dikunci dengan `slug` di portfolioData.js */
+/** Cover kartu kompetisi dari folder `src/assets/cover project/`, dikunci dengan `slug` di portfolioData.js */
 export const compCovers = {
-  brainspace,
-  elderlink,
-  bansoskita,
-  aurora,
-  agrosupply,
-  apollo,
+  brainspace: coverBrainspace,
+  elderlink: coverElderLink,
+  bansoskita: coverBansosKita,
+  aurora: coverAurora,
+  agrosupply: coverAgroSupply,
+  apollo: coverApollo,
+};
+
+/** Ilustrasi karakter vektor untuk avatar persona di halaman studi kasus */
+export const charCovers = {
+  'speedlust-garage': speedlustGarageChar,
+  'rie-charge': rieChargeChar,
+  'poly-board-games': polyBoardGamesChar,
+  visensa: visensaChar,
+  akseskota: akseskotaChar,
+  'project-pkl': projectPklChar,
+  aksaralensa: caraDesain1,
+  naik: caraDesain3,
+  brainspace: brainspaceChar,
+  elderlink: elderlinkChar,
+  bansoskita: bansoskitaChar,
+  aurora: auroraChar,
+  agrosupply: agrosupplyChar,
+  apollo: apolloChar,
 };
 

@@ -74,14 +74,16 @@ export const services = {
 
 export const ribbonWords = ['UI/UX Design', 'User Flow', 'Wireframing', 'Prototyping', 'Design System', 'Front-End', 'React', 'Responsive Web'];
 
-export const workFilters = ['Semua', 'Klien', 'Lomba', 'PKL'];
+export const workFilters = ['Semua', 'Klien', 'Lomba', 'Kuliah', 'PKL'];
 export const works = [
-  { id: 1, slug: 'speedlust-garage', title: 'Speedlust Garage', cat: 'Klien', color: '#d9f20e', burst: '#e8112d', award: null, types: ['Website', 'Landing Page', 'UI Design'], desc: 'Landing page bengkel modifikasi dengan gaya visual berani dan alur pemesanan yang singkat.' },
-  { id: 2, slug: 'rie-charge', title: 'Rie.Charge', cat: 'Klien', color: '#f7a8b8', burst: '#d9f20e', award: null, types: ['Website', 'UI Design'], desc: 'Situs layanan isi ulang dengan antarmuka ramah dan alur transaksi yang jelas.' },
-  { id: 3, slug: 'poly-board-games', title: 'Poly Board Games', cat: 'Klien', color: '#aeb5f7', burst: '#e8112d', award: null, types: ['Website', 'UI Design'], desc: 'Katalog dan reservasi board game dengan nuansa playful.' },
-  { id: 4, slug: 'visensa', title: 'Visensa', cat: 'Lomba', color: '#e8112d', burst: '#d9f20e', award: 'Finalis 5 Besar', types: ['Mobile App', 'UI/UX'], desc: 'Aplikasi mobile hasil lomba UI/UX yang mengantar ke 5 besar nasional.' },
-  { id: 5, slug: 'akseskota', title: 'AksesKota', cat: 'Lomba', color: '#ff3a12', burst: '#d9f20e', award: 'Harapan 1', types: ['Mobile App', 'UI/UX'], desc: 'Solusi aksesibilitas fasilitas kota bagi penyandang disabilitas.' },
-  { id: 6, slug: 'project-pkl', title: 'Project PKL', cat: 'PKL', color: '#98a60a', burst: '#e8112d', award: null, types: ['Website', 'Dashboard'], desc: 'Dashboard internal yang dibangun saat praktik kerja lapangan.' },
+  { id: 1, slug: 'speedlust-garage', title: 'Speedlust Garage', cat: 'Klien', color: '#153230', burst: '#d9f20e', award: null, types: ['Website', 'Landing Page', 'UI/UX'], desc: 'Website layanan cuci helm profesional (Helmet Washing & Detailing) dan katalog produk perawatan helm terintegrasi.' },
+  { id: 2, slug: 'rie-charge', title: 'Rie.Charge', cat: 'Klien', color: '#4e6e3a', burst: '#c9e870', award: null, types: ['Website', 'E-Commerce', 'UI/UX'], desc: 'Website pemesanan Cold Pressed Juice, Fitshot, dan salad segar khas Bogor dengan sistem keranjang PO H-1.' },
+  { id: 3, slug: 'poly-board-games', title: 'Poly Board Games', cat: 'Klien', color: '#8b3dff', burst: '#d9f20e', award: null, types: ['Web App', 'Dashboard', 'UI/UX'], desc: 'Dashboard internal manajemen staf, evaluasi kinerja, payroll, food kasbon, dan lembur untuk Poly Games Cafe.' },
+  { id: 4, slug: 'visensa', title: 'Visensa', cat: 'Lomba', color: '#0d9488', burst: '#c5e827', award: 'Finalis 5 Besar', types: ['Web App', 'AI Health', 'UI/UX'], desc: 'Platform rehabilitasi tangan pasca-stroke dan terapi nyeri phantom limb berbasis AI Mirror Therapy di browser.' },
+  { id: 5, slug: 'akseskota', title: 'AksesKota', cat: 'Lomba', color: '#134e4a', burst: '#2dd4bf', award: 'Harapan 1', types: ['Web & Mobile', 'GIS', 'UI/UX'], desc: 'Direktori fasilitas kota ramah disabilitas dan navigasi rute ramah kursi roda dengan skor aksesibilitas.' },
+  { id: 6, slug: 'project-pkl', title: 'Project PKL', cat: 'PKL', color: '#2563eb', burst: '#d9f20e', award: null, types: ['Web & Mobile', 'Dashboard', 'UI/UX'], desc: 'Rangkaian proyek tim PKL SMK: aplikasi sosial mobile, platform psikotes online, dan sistem approval budget perusahaan.' },
+  { id: 7, slug: 'aksaralensa', title: 'AksaraLensa', cat: 'Kuliah', color: '#98a60a', burst: '#4a3219', award: null, types: ['Mobile App', 'Computer Vision', 'UI/UX'], desc: 'Aplikasi pembelajaran dan pengenalan Aksara Jawa berbasis kamera (Computer Vision) yang interaktif untuk generasi muda.' },
+  { id: 8, slug: 'naik', title: 'NAIK', cat: 'Kuliah', color: '#1fb6d5', burst: '#ff8a2a', award: null, types: ['Website', 'GIS', 'UI/UX'], desc: 'Platform Sistem Informasi Geografis (GIS) eksplorasi rute dan trayek angkot Kota Bogor dalam satu peta interaktif.' },
 ];
 
 export const competitions = {
@@ -90,12 +92,12 @@ export const competitions = {
   titleB: 'UI/UX',
   desc: 'Tempat aku menguji ide: tantangan nyata, tenggat ketat, dan banyak belajar.',
   items: [
-    { n: '01', slug: 'brainspace', title: 'Brainspace', kind: 'Mobile', year: '2025', handle: '@himiunsurya', color: '#f7a8b8', burst: '#2a1540', desc: 'Aplikasi belajar bergaya gamifikasi: mata kuliah, tugas, dan achievement dalam satu tempat.', tags: ['Edutech', 'Gamification'] },
-    { n: '02', slug: 'elderlink', title: 'ElderLink', kind: 'Mobile', year: '2025', handle: '@himiunsurya', color: '#d9f20e', burst: '#161616', desc: 'Aplikasi pendamping lansia: jadwal obat, QR akses cepat, dan video call dengan keluarga.', tags: ['Healthcare', 'Accessibility'] },
-    { n: '03', slug: 'bansoskita', title: 'BansosKita', kind: 'Mobile', year: '2025', handle: '@himiunsurya', color: '#aeb5f7', burst: '#2a1540', desc: 'Aplikasi penyaluran dan pemantauan bantuan sosial yang aman dan transparan.', tags: ['Social Impact', 'Fintech'] },
-    { n: '04', slug: 'aurora', title: 'AURORA', kind: 'Mobile', year: '2026', handle: '@yayasanmuda', color: '#ff3a12', burst: '#d9f20e', desc: 'Aplikasi kesehatan dan kesejahteraan dengan dashboard progress dan pelacak harian.', tags: ['Health', 'Wellbeing'] },
-    { n: '05', slug: 'agrosupply', title: 'AgroSupply', kind: 'Web', year: '2025', handle: '@himatepa_ipb', color: '#98a60a', burst: '#e8112d', desc: 'Dashboard pemantauan pasokan pertanian raya/lokal berbasis peta.', tags: ['Agritech', 'Dashboard'] },
-    { n: '06', slug: 'apollo', title: 'APOLLO', kind: 'Web', year: '2026', handle: '@itb_aic', color: '#e8112d', burst: '#d9f20e', desc: 'Dashboard monitoring konversi sampah plastik menjadi energi listrik.', tags: ['Waste Tech', 'Cleantech'] },
+    { n: '01', slug: 'brainspace', title: 'Brainspace', kind: 'Mobile', year: '2025', handle: '@himiunsurya', color: '#f9c932', burst: '#ef7a4c', desc: 'Aplikasi belajar interaktif bergaya gamifikasi bersama maskot Timo: materi, video, kuis, dan achievement.', tags: ['Edutech', 'Gamification'] },
+    { n: '02', slug: 'elderlink', title: 'ElderLink', kind: 'Mobile', year: '2025', handle: '@invention.udayana', color: '#233d2c', burst: '#7ca982', desc: 'Aplikasi pendamping lansia: jadwal minum obat terorganisir, kode QR wali keluarga, dan panggilan darurat.', tags: ['Healthcare', 'Accessibility'] },
+    { n: '03', slug: 'bansoskita', title: 'BansosKita', kind: 'Mobile', year: '2025', handle: '@fasilkomfest', color: '#6b21a8', burst: '#e11d48', desc: 'Aplikasi pemantauan dan verifikasi bantuan sosial terintegrasi data Dukcapil, BPJS, dan PLN secara transparan.', tags: ['Social Impact', 'GovTech'] },
+    { n: '04', slug: 'aurora', title: 'AURORA', kind: 'Mobile', year: '2026', handle: '@ugmfindit', color: '#2563eb', burst: '#facc15', desc: 'Aplikasi skrining awal autisme dan pelacakan tumbuh kembang anak berbasis On-Device AI lewat mini-game interaktif.', tags: ['AI Healthcare', 'Child Dev'] },
+    { n: '05', slug: 'agrosupply', title: 'AgroSupply', kind: 'Web', year: '2025', handle: '@technoday_unnes', color: '#16a34a', burst: '#d9f20e', desc: 'Platform pemetaan pasokan pertanian Jawa Barat dan manajemen distribusi langsung dari petani ke pembeli.', tags: ['Agritech', 'GIS Dashboard'] },
+    { n: '06', slug: 'apollo', title: 'APOLLO', kind: 'Web', year: '2025', handle: 'PKM-KC IPB', color: '#b6f000', burst: '#f97316', desc: 'Website dan dashboard IoT monitoring reaktor pirolisis pengubah limbah plastik menjadi energi listrik (Waste-to-Energy).', tags: ['Waste-to-Energy', 'IoT Dashboard'] },
   ],
   certsTitleA: 'Sertifikasi &',
   certsTitleHl: 'prestasi',

@@ -28,10 +28,9 @@ export default function Competitions() {
             <Reveal as="li" key={it.n} variant="tilt" delay={(i % 3) * 120} className="card-glass comp-card" style={{ cursor: 'pointer' }}
               onClick={() => { window.location.hash = caseHref(it.slug); }}>
               <div className="comp-card__cover" style={{ background: it.color }}>
-                <Starburst size={176} color={it.burst || 'var(--red-500)'} className="comp-card__burst" style={{ left: -40, top: -40 }} />
-                <img src={compCovers[it.slug]} alt="" className="comp-card__char" loading="lazy" />
+                <img src={compCovers[it.slug]} alt={it.title} className="comp-card__char" loading="lazy" />
                 <span className="comp-card__n">{it.n}</span>
-                <IconCircle tone="lime" size={48} href={caseHref(it.slug)} label={`Lihat studi kasus ${it.title}`} className="comp-card__go" onClick={(e) => e.stopPropagation()} />
+                <IconCircle tone="lime" size={44} href={caseHref(it.slug)} label={`Lihat studi kasus ${it.title}`} className="comp-card__go" onClick={(e) => e.stopPropagation()} />
               </div>
               <div className="comp-card__body">
                 <div className="comp-card__meta">
