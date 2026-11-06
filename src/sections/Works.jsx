@@ -14,6 +14,11 @@ export default function Works() {
   const [index, setIndex] = useState(0);
   const trackRef = useRef(null);
 
+  const isDownRef = useRef(false);
+  const startXRef = useRef(0);
+  const scrollLeftRef = useRef(0);
+  const isDraggingRef = useRef(false);
+
   const list = filter === 'Semua' ? works : works.filter((w) => w.cat === filter);
   const current = list[Math.min(index, list.length - 1)];
 
@@ -34,9 +39,50 @@ export default function Works() {
 
   const onScroll = () => {
     const el = trackRef.current;
-    if (!el) return;
+    if (!el || isDownRef.current) return;
     const cardW = el.children[0]?.offsetWidth + 20 || 1;
     setIndex(Math.round(el.scrollLeft / cardW));
+  };
+
+  // Drag-to-scroll dengan mouse
+  const handleMouseDown = (e) => {
+    if (e.button !== 0) return;
+    const el = trackRef.current;
+    if (!el) return;
+    isDownRef.current = true;
+    isDraggingRef.current = false;
+    startXRef.current = e.pageX - el.offsetLeft;
+    scrollLeftRef.current = el.scrollLeft;
+    el.style.scrollSnapType = 'none';
+    el.classList.add('is-dragging');
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDownRef.current) return;
+    const el = trackRef.current;
+    if (!el) return;
+    e.preventDefault();
+    const x = e.pageX - el.offsetLeft;
+    const walk = (x - startXRef.current) * 1.25;
+    if (Math.abs(walk) > 6) {
+      isDraggingRef.current = true;
+    }
+    el.scrollLeft = scrollLeftRef.current - walk;
+  };
+
+  const handleMouseUpOrLeave = () => {
+    if (!isDownRef.current) return;
+    isDownRef.current = false;
+    const el = trackRef.current;
+    if (el) {
+      el.style.scrollSnapType = 'x mandatory';
+      el.classList.remove('is-dragging');
+      const cardW = el.children[0]?.offsetWidth + 20 || 1;
+      setIndex(Math.round(el.scrollLeft / cardW));
+    }
+    setTimeout(() => {
+      isDraggingRef.current = false;
+    }, 60);
   };
 
   return (
@@ -59,17 +105,40 @@ export default function Works() {
       </div>
 
       <Reveal variant="scale-up" delay={120} className="works__viewport container">
-        <div className="works__track" ref={trackRef} onScroll={onScroll}
-          role="group" aria-roledescription="carousel" aria-label="Daftar proyek">
+        <div
+          className="works__track"
+          ref={trackRef}
+          onScroll={onScroll}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUpOrLeave}
+          onMouseLeave={handleMouseUpOrLeave}
+          role="group"
+          aria-roledescription="carousel"
+          aria-label="Daftar proyek"
+        >
           {list.map((w, i) => (
-            <article key={w.id} className="work-card" style={{ background: w.color, cursor: 'pointer' }}
+            <article key={w.id} className="work-card" style={{ background: w.color }}
               aria-label={`${i + 1} dari ${list.length}: ${w.title}`}
-              onClick={() => { window.location.hash = caseHref(w.slug); }}>
-              <img src={workCovers[w.slug]} alt={w.title} className="work-card__char" loading="lazy" />
+              onClick={(e) => {
+                if (isDraggingRef.current) {
+                  e.preventDefault();
+                  return;
+                }
+                window.location.hash = caseHref(w.slug);
+              }}>
+              <img src={workCovers[w.slug]} alt={w.title} className="work-card__char" loading="lazy" draggable={false} />
               {w.award && <Chip variant="lime" className="work-card__award">{w.award}</Chip>}
               <div className="work-card__shade" />
               <h3 className="work-card__title">{w.title}</h3>
-              <IconCircle tone="white" size={44} href={caseHref(w.slug)} label={`Buka studi kasus ${w.title}`} className="work-card__go" onClick={(e) => e.stopPropagation()} />
+              <IconCircle tone="white" size={44} href={caseHref(w.slug)} label={`Buka studi kasus ${w.title}`} className="work-card__go" onClick={(e) => {
+                if (isDraggingRef.current) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  return;
+                }
+                e.stopPropagation();
+              }} />
             </article>
           ))}
         </div>

@@ -16,6 +16,13 @@
   padding-block: 12px;
   padding-inline: 4px;
   margin-block: -8px;
+  cursor: grab;
+  user-select: none;
+}
+.works__track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
 }
 .works__track::-webkit-scrollbar { display: none; }
 .work-card {
@@ -30,6 +37,14 @@
   scroll-snap-align: start;
   color: #fff;
   background: #141515;
+  user-select: none;
+  cursor: grab;
+}
+.work-card:active {
+  cursor: grabbing;
+}
+.work-card img {
+  pointer-events: none;
 }
 .work-card__char {
   position: relative;
