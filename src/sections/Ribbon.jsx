@@ -1,10 +1,9 @@
-import Reveal from '../components/ui/Reveal';
 import { Sparkle } from '../components/ui/Decor';
 import { ribbonWords } from '../data/portfolioData';
 import './Ribbon.css';
 
 function Track() {
-  // Isi diulang 2x agar loop -50% mulus
+  // Isi diulang 4x agar loop marquee mulus tanpa jeda
   const items = [...ribbonWords, ...ribbonWords, ...ribbonWords, ...ribbonWords];
   return (
     <div className="ribbon__track">
@@ -24,10 +23,11 @@ function Track() {
 
 export default function Ribbon() {
   return (
-    <Reveal as="section" variant="scale-up" duration={700} className="ribbon" aria-label="Keahlian utama">
-      <div className="ribbon__band ribbon__band--1"><Track /></div>
-      <div className="ribbon__band ribbon__band--2"><Track /></div>
-    </Reveal>
+    <section className="ribbon" aria-label="Keahlian utama">
+      <div className="ribbon__band">
+        <Track />
+      </div>
+    </section>
   );
 }
 

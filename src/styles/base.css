@@ -18,6 +18,35 @@ body {
       border-color var(--duration-base) ease;
   }
 }
+
+/* ===== CIRCULAR THEME TRANSITION (View Transitions API) ===== */
+html[data-theme-transition] *,
+html[data-theme-transition] *::before,
+html[data-theme-transition] *::after {
+  transition: none !important;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Default (To Dark): Layar gelap baru membesar dari tombol */
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* To Light: Layar gelap lama mengecil masuk ke tombol */
+html[data-theme-transition="to-light"]::view-transition-old(root) {
+  z-index: 9999;
+}
+html[data-theme-transition="to-light"]::view-transition-new(root) {
+  z-index: 1;
+}
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 h1, h2, h3, h4 {

@@ -27,7 +27,7 @@ export default function App() {
           <main>
             <Hero />
             <SectionFx><Services /></SectionFx>
-            <SectionFx><Ribbon /></SectionFx>
+            <Ribbon />
             <SectionFx><Works /></SectionFx>
             <SectionFx><Competitions /></SectionFx>
             <SectionFx><Experience /></SectionFx>

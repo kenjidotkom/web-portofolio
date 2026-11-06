@@ -1,44 +1,27 @@
 .ribbon {
   position: relative;
-  height: 280px;
-  padding-block: var(--space-20);
+  height: 120px;
+  margin-block: var(--space-6);
   overflow: clip;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 5;
 }
 
 .ribbon__band {
   position: absolute;
   left: -5%;
   width: 110%;
-  height: 80px;
+  height: 72px;
   overflow: hidden;
   display: flex;
   align-items: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-  pointer-events: auto;
-}
-
-/* Pita 1: Warna Lime, Miring -2 derajat */
-.ribbon__band--1 {
   background: var(--lime-400);
   color: #0c0c0c;
-  transform: rotate(-2deg);
-  z-index: 1;
-}
-
-/* Pita 2: Warna Putih, Miring +1.5 derajat (menimpa pita 1) */
-.ribbon__band--2 {
-  background: var(--ribbon-2-bg, #ffffff);
-  color: var(--ribbon-2-text, #0c0c0c);
-  transform: rotate(1.5deg);
-  z-index: 2;
-}
-
-:root[data-theme="light"] .ribbon__band--2 {
-  background: #0c0c0c;
-  color: #f6f9dc;
+  transform: rotate(-1.5deg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  pointer-events: auto;
 }
 
 /* Track Animasi Jalan Terus Menerus */
@@ -46,12 +29,7 @@
   display: flex;
   width: max-content;
   will-change: transform;
-  animation: ribbonMarquee 24s linear infinite;
-}
-
-/* Pita 2 berjalan berlawanan arah */
-.ribbon__band--2 .ribbon__track {
-  animation: ribbonMarqueeReverse 28s linear infinite;
+  animation: ribbonMarquee 26s linear infinite;
 }
 
 /* Hover untuk jeda lembut jika user ingin membaca */
@@ -108,11 +86,11 @@
 
 @media (max-width: 639px) {
   .ribbon {
-    height: 180px;
-    padding-block: 20px;
+    height: 80px;
+    margin-block: var(--space-4);
   }
   .ribbon__band {
-    height: 52px;
+    height: 50px;
   }
   .ribbon__group {
     gap: 18px;
