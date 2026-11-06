@@ -25,20 +25,20 @@ import apolloChar from './apollo.svg';
 
 // Cover project dari folder `./covers/`
 import coverSpeedlustGarage from './covers/speedlustgarage.png';
-import coverRieCharge from './covers/Rie.Charge.png';
+import coverRieCharge from './covers/rie.charge.png';
 import coverPolyBoardGames from './covers/poly-board-games.png';
 import coverVisensa from './covers/visensa.png';
-import coverAksesKota from './covers/AksesKota.png';
+import coverAksesKota from './covers/akseskota.png';
 import coverPkl from './covers/PKL.png';
-import coverAksaraLensa from './covers/AksaraLensa.png';
-import coverNaik from './covers/NAIK.png';
+import coverAksaraLensa from './covers/aksaralensa.png';
+import coverNaik from './covers/naik.png';
 
-import coverBrainspace from './covers/Brainspace.png';
-import coverElderLink from './covers/ElderLink.png';
-import coverBansosKita from './covers/BansosKita.png';
-import coverAurora from './covers/AURORA.png';
-import coverAgroSupply from './covers/AgroSupply.png';
-import coverApollo from './covers/APOLLO.png';
+import coverBrainspace from './covers/brainspace.png';
+import coverElderLink from './covers/elderlink.png';
+import coverBansosKita from './covers/bansoskita.png';
+import coverAurora from './covers/aurora.png';
+import coverAgroSupply from './covers/agrosupply.png';
+import coverApollo from './covers/apollo.png';
 
 import uiuxDesign from './uiux design.svg';
 import frontEnd from './front-end.svg';
