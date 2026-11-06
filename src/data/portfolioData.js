@@ -74,7 +74,7 @@ export const services = {
 
 export const ribbonWords = ['UI/UX Design', 'User Flow', 'Wireframing', 'Prototyping', 'Design System', 'Front-End', 'React', 'Responsive Web'];
 
-export const workFilters = ['Semua', 'Klien', 'Lomba', 'Kuliah', 'PKL'];
+export const workFilters = ['Semua', 'Klien', 'Lomba', 'PKL'];
 export const works = [
   { id: 1, slug: 'speedlust-garage', title: 'Speedlust Garage', cat: 'Klien', color: '#153230', burst: '#d9f20e', award: null, types: ['Website', 'Landing Page', 'UI/UX'], desc: 'Website layanan cuci helm profesional (Helmet Washing & Detailing) dan katalog produk perawatan helm terintegrasi.' },
   { id: 2, slug: 'rie-charge', title: 'Rie.Charge', cat: 'Klien', color: '#4e6e3a', burst: '#c9e870', award: null, types: ['Website', 'E-Commerce', 'UI/UX'], desc: 'Website pemesanan Cold Pressed Juice, Fitshot, dan salad segar khas Bogor dengan sistem keranjang PO H-1.' },
@@ -82,8 +82,8 @@ export const works = [
   { id: 4, slug: 'visensa', title: 'Visensa', cat: 'Lomba', color: '#0d9488', burst: '#c5e827', award: 'Finalis 5 Besar', types: ['Web App', 'AI Health', 'UI/UX'], desc: 'Platform rehabilitasi tangan pasca-stroke dan terapi nyeri phantom limb berbasis AI Mirror Therapy di browser.' },
   { id: 5, slug: 'akseskota', title: 'AksesKota', cat: 'Lomba', color: '#134e4a', burst: '#2dd4bf', award: 'Harapan 1', types: ['Web & Mobile', 'GIS', 'UI/UX'], desc: 'Direktori fasilitas kota ramah disabilitas dan navigasi rute ramah kursi roda dengan skor aksesibilitas.' },
   { id: 6, slug: 'project-pkl', title: 'Project PKL', cat: 'PKL', color: '#2563eb', burst: '#d9f20e', award: null, types: ['Web & Mobile', 'Dashboard', 'UI/UX'], desc: 'Rangkaian proyek tim PKL SMK: aplikasi sosial mobile, platform psikotes online, dan sistem approval budget perusahaan.' },
-  { id: 7, slug: 'aksaralensa', title: 'AksaraLensa', cat: 'Kuliah', color: '#98a60a', burst: '#4a3219', award: null, types: ['Mobile App', 'Computer Vision', 'UI/UX'], desc: 'Aplikasi pembelajaran dan pengenalan Aksara Jawa berbasis kamera (Computer Vision) yang interaktif untuk generasi muda.' },
-  { id: 8, slug: 'naik', title: 'NAIK', cat: 'Kuliah', color: '#1fb6d5', burst: '#ff8a2a', award: null, types: ['Website', 'GIS', 'UI/UX'], desc: 'Platform Sistem Informasi Geografis (GIS) eksplorasi rute dan trayek angkot Kota Bogor dalam satu peta interaktif.' },
+  { id: 7, slug: 'aksaralensa', title: 'AksaraLensa', cat: 'Klien', color: '#98a60a', burst: '#4a3219', award: null, types: ['Mobile App', 'Computer Vision', 'UI/UX'], desc: 'Aplikasi pembelajaran dan pengenalan Aksara Jawa berbasis kamera (Computer Vision) yang interaktif untuk generasi muda.' },
+  { id: 8, slug: 'naik', title: 'NAIK', cat: 'Klien', color: '#1fb6d5', burst: '#ff8a2a', award: null, types: ['Website', 'GIS', 'UI/UX'], desc: 'Platform Sistem Informasi Geografis (GIS) eksplorasi rute dan trayek angkot Kota Bogor dalam satu peta interaktif.' },
 ];
 
 export const competitions = {
