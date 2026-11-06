@@ -24,9 +24,9 @@ import agrosupplyChar from './agrosupply.svg';
 import apolloChar from './apollo.svg';
 
 // Cover project dari folder `./covers/`
-import coverSpeedlustGarage from './covers/Speedlust Garage.png';
+import coverSpeedlustGarage from './covers/speedlustgarage.png';
 import coverRieCharge from './covers/Rie.Charge.png';
-import coverPolyBoardGames from './covers/Poly Board Games.png';
+import coverPolyBoardGames from './covers/poly-board-games.png';
 import coverVisensa from './covers/visensa.png';
 import coverAksesKota from './covers/AksesKota.png';
 import coverPkl from './covers/PKL.png';
