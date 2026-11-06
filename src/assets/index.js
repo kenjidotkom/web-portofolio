@@ -23,22 +23,22 @@ import auroraChar from './aurora.svg';
 import agrosupplyChar from './agrosupply.svg';
 import apolloChar from './apollo.svg';
 
-// Cover project dari folder `./cover project/`
-import coverSpeedlustGarage from './cover project/Speedlust Garage.png';
-import coverRieCharge from './cover project/Rie.Charge.png';
-import coverPolyBoardGames from './cover project/Poly Board Games.png';
-import coverVisensa from './cover project/visensa.png';
-import coverAksesKota from './cover project/AksesKota.png';
-import coverPkl from './cover project/PKL.png';
-import coverAksaraLensa from './cover project/AksaraLensa.png';
-import coverNaik from './cover project/NAIK.png';
+// Cover project dari folder `./covers/`
+import coverSpeedlustGarage from './covers/Speedlust Garage.png';
+import coverRieCharge from './covers/Rie.Charge.png';
+import coverPolyBoardGames from './covers/Poly Board Games.png';
+import coverVisensa from './covers/visensa.png';
+import coverAksesKota from './covers/AksesKota.png';
+import coverPkl from './covers/PKL.png';
+import coverAksaraLensa from './covers/AksaraLensa.png';
+import coverNaik from './covers/NAIK.png';
 
-import coverBrainspace from './cover project/Brainspace.png';
-import coverElderLink from './cover project/ElderLink.png';
-import coverBansosKita from './cover project/BansosKita.png';
-import coverAurora from './cover project/AURORA.png';
-import coverAgroSupply from './cover project/AgroSupply.png';
-import coverApollo from './cover project/APOLLO.png';
+import coverBrainspace from './covers/Brainspace.png';
+import coverElderLink from './covers/ElderLink.png';
+import coverBansosKita from './covers/BansosKita.png';
+import coverAurora from './covers/AURORA.png';
+import coverAgroSupply from './covers/AgroSupply.png';
+import coverApollo from './covers/APOLLO.png';
 
 import uiuxDesign from './uiux design.svg';
 import frontEnd from './front-end.svg';
