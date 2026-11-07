@@ -12,6 +12,7 @@ import { getCase, getAdjacentCases, otherCases } from '../data/caseStudies';
 import { person } from '../data/portfolioData';
 import { caseHref } from '../hooks/useHashRoute';
 import Footer from './Footer';
+import DeliverableArtifact from '../components/ui/DeliverableArtifact';
 import './CaseStudy.css';
 
 const covers = { ...workCovers, ...compCovers };
@@ -359,17 +360,14 @@ export default function CaseStudy({ slug }) {
               />
 
               <h3 className="cs-deliv-group">
-                <Sparkle size={14} color="#d9f20e" />
+                <Sparkle size={15} color="#d9f20e" inline className="decor--inline" />
                 <span>Proses desain</span>
               </h3>
               <div className="cs-grid-2">
                 {processDelivs.map((d, i) => (
                   <Reveal as="figure" key={d.title} className="cs-deliv" delay={(i % 2) * 60}>
-                    <div className="cs-deliv__frame cs-deliv__frame--placeholder">
-                      <div className="cs-deliv__ph">
-                        <ImageIcon size={22} aria-hidden="true" />
-                        <span>Artefak {d.title}</span>
-                      </div>
+                    <div className="cs-deliv__frame cs-deliv__frame--art">
+                      <DeliverableArtifact project={c} item={d} index={i} />
                     </div>
                     <figcaption>
                       <strong>{d.title}</strong>
@@ -380,11 +378,11 @@ export default function CaseStudy({ slug }) {
               </div>
 
               <h3 className="cs-deliv-group">
-                <Sparkle size={14} color="#d9f20e" />
+                <Sparkle size={15} color="#d9f20e" inline className="decor--inline" />
                 <span>Hasil akhir</span>
               </h3>
               <div className="cs-final-stack">
-                {finalDelivs.map((d) => {
+                {finalDelivs.map((d, idx) => {
                   if (d.isFeatured) {
                     return (
                       <Reveal as="figure" key={d.title} id="ui-final" className="cs-deliv cs-deliv--featured">
@@ -399,12 +397,9 @@ export default function CaseStudy({ slug }) {
                     );
                   }
                   return (
-                    <Reveal as="figure" key={d.title} className="cs-deliv cs-deliv--half">
-                      <div className="cs-deliv__frame cs-deliv__frame--placeholder">
-                        <div className="cs-deliv__ph">
-                          <ImageIcon size={22} aria-hidden="true" />
-                          <span>Pratinjau {d.title}</span>
-                        </div>
+                    <Reveal as="figure" key={d.title} className="cs-deliv cs-deliv--half" delay={(idx % 2) * 60}>
+                      <div className="cs-deliv__frame cs-deliv__frame--art">
+                        <DeliverableArtifact project={c} item={d} index={idx + 4} />
                       </div>
                       <figcaption>
                         <strong>{d.title}</strong>
@@ -450,7 +445,7 @@ export default function CaseStudy({ slug }) {
               <Reveal className="cs-impact-banner">
                 <div className="cs-impact-banner__top">
                   <span className="cs-impact-banner__eyebrow">Hasil & Dampak</span>
-                  <Sparkle size={18} color="#d9f20e" />
+                  <Sparkle size={18} color="#d9f20e" inline className="decor--inline" />
                 </div>
                 <h3>{c.impact.headline}</h3>
                 <ul className="cs-impact-banner__list">

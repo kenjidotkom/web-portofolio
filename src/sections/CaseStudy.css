@@ -556,10 +556,19 @@
 .cs-deliv-group {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin: var(--space-6) 0 var(--space-4);
-  font: 700 0.9rem/1 var(--font-body);
+  font: 700 0.95rem/1.2 var(--font-body);
   color: var(--text-primary);
+}
+
+.cs-deliv-group .decor,
+.cs-deliv-group svg {
+  position: static !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+  vertical-align: middle;
+  margin-right: 2px;
 }
 
 .cs-deliv {
@@ -584,6 +593,12 @@
 .cs-deliv__frame--featured {
   aspect-ratio: 16 / 9;
   background: #141515;
+}
+.cs-deliv__frame--art {
+  display: block;
+  padding: 0;
+  background: #0f1013;
+  aspect-ratio: 16 / 10;
 }
 .cs-deliv__frame img {
   width: 100%;
@@ -693,6 +708,12 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
+}
+.cs-impact-banner__top .decor,
+.cs-impact-banner__top svg {
+  position: static !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
 }
 .cs-impact-banner__eyebrow {
   font: 700 0.7rem/1 var(--font-body);
@@ -888,7 +909,7 @@
 .cs-cta__content {
   position: relative;
   z-index: 2;
-  max-width: 540px;
+  max-width: min(540px, calc(100% - 130px));
 }
 .cs-cta h2 {
   font-family: var(--font-display);
@@ -1013,6 +1034,9 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 24px 20px;
+  }
+  .cs-cta__content {
+    max-width: calc(100% - 90px);
   }
   .cs-cta__burst {
     position: absolute;

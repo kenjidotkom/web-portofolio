@@ -12,17 +12,19 @@ function starPoints(spikes, outer, inner) {
 
 const STARBURST = starPoints(10, 50, 34);
 
-export function Starburst({ size = 112, color = 'var(--red-500)', className = '', style }) {
+export function Starburst({ size = 112, color = 'var(--red-500)', className = '', style, inline = false }) {
+  const inlineClass = inline ? 'decor--inline' : '';
   return (
-    <svg aria-hidden="true" className={`decor ${className}`} width={size} height={size} viewBox="0 0 100 100" style={style}>
+    <svg aria-hidden="true" className={`decor ${inlineClass} ${className}`.trim()} width={size} height={size} viewBox="0 0 100 100" style={style}>
       <polygon points={STARBURST} fill={color} />
     </svg>
   );
 }
 
-export function Sparkle({ size = 24, color = 'var(--red-500)', className = '', style }) {
+export function Sparkle({ size = 24, color = 'var(--red-500)', className = '', style, inline = false }) {
+  const inlineClass = inline ? 'decor--inline' : '';
   return (
-    <svg aria-hidden="true" className={`decor ${className}`} width={size} height={size} viewBox="0 0 24 24" style={style}>
+    <svg aria-hidden="true" className={`decor ${inlineClass} ${className}`.trim()} width={size} height={size} viewBox="0 0 24 24" style={style}>
       <path d="M12 0c.8 6.6 4.8 10.6 12 12-7.2 1.4-11.2 5.4-12 12-.8-6.6-4.8-10.6-12-12C7.2 10.6 11.2 6.6 12 0z" fill={color} />
     </svg>
   );

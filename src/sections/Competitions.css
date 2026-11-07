@@ -343,6 +343,9 @@
     border-radius: var(--radius-3xl);
     padding-block: 40px 32px;
   }
+  .competitions__sparkle {
+    display: none;
+  }
   .competitions__grid {
     grid-template-columns: 1fr;
     gap: 16px;

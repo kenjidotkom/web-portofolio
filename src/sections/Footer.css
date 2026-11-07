@@ -4,6 +4,7 @@
 .footer__cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: var(--space-10); }
 .footer__logo { display: inline-flex; align-items: center; gap: 10px; font: 400 var(--fs-title-md)/32px var(--font-display); letter-spacing: 0.6px; margin-bottom: var(--space-4); }
 .footer__logo-mark { width: 40px; height: 40px; border-radius: 50%; background: var(--lime-400); display: grid; place-items: center; }
+.footer__logo-mark .decor { position: static; }
 .footer__brand p { font-size: var(--fs-body); line-height: 22.75px; color: rgba(255, 255, 255, 0.75); max-width: 380px; }
 .footer__social { display: flex; gap: var(--space-3); margin-top: var(--space-5); }
 .footer__social a { width: 44px; height: 44px; border-radius: var(--radius-sm); background: var(--lime-400); color: #0c0c0c; display: grid; place-items: center; transition: transform var(--duration-fast); }

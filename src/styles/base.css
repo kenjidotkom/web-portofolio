@@ -22,30 +22,60 @@ body {
 /* ===== CIRCULAR THEME TRANSITION (View Transitions API) ===== */
 html[data-theme-transition] *,
 html[data-theme-transition] *::before,
-html[data-theme-transition] *::after {
+html[data-theme-transition] *::after,
+html[data-theme-transition] body {
   transition: none !important;
+}
+
+::view-transition-group(root) {
+  animation-duration: 550ms;
+}
+
+::view-transition-image-pair(root) {
+  isolation: auto;
 }
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+  display: block;
 }
 
-/* Default (To Dark): Layar gelap baru membesar dari tombol */
-::view-transition-old(root) {
+/* 1. Transisi ke DARK: Lingkaran gelap baru membesar dari titik tombol */
+html[data-theme-transition="to-dark"]::view-transition-old(root) {
   z-index: 1;
 }
-::view-transition-new(root) {
+html[data-theme-transition="to-dark"]::view-transition-new(root) {
   z-index: 9999;
+  animation: reveal-dark 550ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* To Light: Layar gelap lama mengecil masuk ke tombol */
+/* 2. Transisi ke LIGHT: Lingkaran gelap lama menyusut masuk ke arah tombol */
 html[data-theme-transition="to-light"]::view-transition-old(root) {
   z-index: 9999;
+  animation: hide-dark 550ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 html[data-theme-transition="to-light"]::view-transition-new(root) {
   z-index: 1;
+}
+
+@keyframes reveal-dark {
+  0% {
+    clip-path: circle(0px at var(--toggle-x, 50%) var(--toggle-y, 40px));
+  }
+  100% {
+    clip-path: circle(var(--toggle-r, 150vmax) at var(--toggle-x, 50%) var(--toggle-y, 40px));
+  }
+}
+
+@keyframes hide-dark {
+  0% {
+    clip-path: circle(var(--toggle-r, 150vmax) at var(--toggle-x, 50%) var(--toggle-y, 40px));
+  }
+  100% {
+    clip-path: circle(0px at var(--toggle-x, 50%) var(--toggle-y, 40px));
+  }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 

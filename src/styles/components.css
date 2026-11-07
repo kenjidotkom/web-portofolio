@@ -69,3 +69,19 @@
 
 .decor { position: absolute; pointer-events: none; z-index: var(--z-decor); }
 
+/* Bintang & ornamen dekoratif di dalam teks atau inline flex WAJIB static agar tidak menimpa teks */
+.decor--inline,
+:is(h1, h2, h3, h4, h5, h6, p, a, button, span, li, figure, figcaption) > .decor,
+:is(h1, h2, h3, h4, h5, h6, p, a, button, span, li, figure, figcaption) .decor--inline,
+.cs-deliv-group .decor,
+.cs-impact-banner__top .decor,
+.ribbon__sep,
+.nav__logo-mark .decor,
+.footer__logo-mark .decor {
+  position: static !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+  vertical-align: middle;
+}
+
+
