@@ -1,7 +1,7 @@
 .ribbon {
   position: relative;
-  height: 120px;
-  margin-block: var(--space-6);
+  height: 240px;
+  padding-block: var(--space-8);
   overflow: clip;
   display: flex;
   align-items: center;
@@ -13,15 +13,34 @@
   position: absolute;
   left: -5%;
   width: 110%;
-  height: 72px;
+  height: 76px;
   overflow: hidden;
   display: flex;
   align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  pointer-events: auto;
+}
+
+/* Pita 1: Warna Lime neon, miring -2.5deg, jalan ke kiri */
+.ribbon__band--1 {
   background: var(--lime-400);
   color: #0c0c0c;
-  transform: rotate(-1.5deg);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  pointer-events: auto;
+  transform: rotate(-2.5deg);
+  z-index: 1;
+}
+
+/* Pita 2: Warna Putih (hitam di light mode), miring +1.8deg, menimpa pita 1, jalan ke kanan */
+.ribbon__band--2 {
+  background: var(--ribbon-2-bg, #ffffff);
+  color: var(--ribbon-2-text, #0c0c0c);
+  transform: rotate(1.8deg);
+  z-index: 2;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+}
+
+:root[data-theme="light"] .ribbon__band--2 {
+  background: #0c0c0c;
+  color: #f6f9dc;
 }
 
 /* Track Animasi Jalan Terus Menerus */
@@ -29,7 +48,12 @@
   display: flex;
   width: max-content;
   will-change: transform;
-  animation: ribbonMarquee 26s linear infinite;
+  animation: ribbonMarquee 24s linear infinite;
+}
+
+/* Pita 2 berjalan berlawanan arah (ke kanan) */
+.ribbon__band--2 .ribbon__track {
+  animation: ribbonMarqueeReverse 28s linear infinite;
 }
 
 /* Hover untuk jeda lembut jika user ingin membaca */
@@ -86,11 +110,11 @@
 
 @media (max-width: 639px) {
   .ribbon {
-    height: 80px;
-    margin-block: var(--space-4);
+    height: 160px;
+    margin-block: var(--space-6);
   }
   .ribbon__band {
-    height: 50px;
+    height: 54px;
   }
   .ribbon__group {
     gap: 18px;

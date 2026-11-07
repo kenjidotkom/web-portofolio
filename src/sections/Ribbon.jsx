@@ -24,7 +24,10 @@ function Track() {
 export default function Ribbon() {
   return (
     <section className="ribbon" aria-label="Keahlian utama">
-      <div className="ribbon__band">
+      <div className="ribbon__band ribbon__band--1">
+        <Track />
+      </div>
+      <div className="ribbon__band ribbon__band--2">
         <Track />
       </div>
     </section>
